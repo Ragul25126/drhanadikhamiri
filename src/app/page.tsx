@@ -238,6 +238,7 @@ export default function Home() {
           </div>
           <div className="footer-bottom">
             <p>&copy; 2026 Dr. Hanadi Khamiri. All Rights Reserved.</p>
+            <p>Developed by <a href="https://valgrowlabs.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', transition: 'opacity 0.3s' }}>ValGrow Labs</a></p>
           </div>
         </div>
       </footer>

@@ -13,6 +13,7 @@ type Booking = {
   phone: string;
   email: string;
   status: string;
+  notes: string;
   created_at: string;
 };
 
@@ -26,68 +27,55 @@ type BlogPost = {
   created_at: string;
 };
 
-/* ── Helpers ── */
-const statusColors: Record<string, string> = {
-  pending: '#f59e0b', confirmed: '#10b981', completed: '#6366f1', cancelled: '#ef4444',
-};
-const statusLabels: Record<string, string> = {
-  pending: '⏳ Pending', confirmed: '✅ Confirmed', completed: '🎉 Completed', cancelled: '✕ Cancelled',
+/* ── Constants ── */
+const STATUSES = ['booked', 'confirmed', 'visited', 'completed', 'cancelled'] as const;
+
+const STATUS_META: Record<string, { label: string; color: string }> = {
+  booked:    { label: 'Booked',    color: '#6366f1' },
+  confirmed: { label: 'Confirmed', color: '#0ea5e9' },
+  visited:   { label: 'Visited',   color: '#f59e0b' },
+  completed: { label: 'Completed', color: '#10b981' },
+  cancelled: { label: 'Cancelled', color: '#94a3b8' },
 };
 
-function timeAgo(dateStr: string) {
-  const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000);
-  if (diff < 60) return 'Just now';
-  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
-  return new Date(dateStr).toLocaleDateString('en-AE', { day: 'numeric', month: 'short' });
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-AE', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+function formatTime(d: string) {
+  return new Date(d).toLocaleTimeString('en-AE', { hour: '2-digit', minute: '2-digit' });
 }
 
-/* ═══════════════════════════════════════════════════════════
-   MAIN ADMIN PAGE
-   ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   ROOT
+   ═══════════════════════════════════════ */
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [pw, setPw] = useState('');
   const [pwError, setPwError] = useState(false);
   const [tab, setTab] = useState<'bookings' | 'blog'>('bookings');
 
-  // Check sessionStorage on mount
   useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem('admin_authed') === '1') {
-      setAuthed(true);
-    }
+    if (typeof window !== 'undefined' && sessionStorage.getItem('admin_authed') === '1') setAuthed(true);
   }, []);
 
   const handleLogin = () => {
-    if (pw === ADMIN_PASSWORD) {
-      setAuthed(true);
-      setPwError(false);
-      sessionStorage.setItem('admin_authed', '1');
-    } else {
-      setPwError(true);
-    }
+    if (pw === ADMIN_PASSWORD) { setAuthed(true); setPwError(false); sessionStorage.setItem('admin_authed', '1'); }
+    else setPwError(true);
   };
 
+  /* ── Login ── */
   if (!authed) {
     return (
-      <div className="admin-shell">
+      <div className="adm">
         <div className="login-screen">
           <div className="login-card">
-            <div className="login-logo">🦷</div>
-            <h1>Admin Access</h1>
+            <div className="login-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <h1>Admin Panel</h1>
             <p>Dr. Hanadi Khamiri Clinic</p>
             <form onSubmit={e => { e.preventDefault(); handleLogin(); }}>
-              <input
-                type="password"
-                className="login-input"
-                placeholder="Enter password"
-                value={pw}
-                onChange={e => { setPw(e.target.value); setPwError(false); }}
-                autoFocus
-              />
+              <input type="password" className="login-input" placeholder="Password" value={pw} onChange={e => { setPw(e.target.value); setPwError(false); }} autoFocus />
               {pwError && <div className="login-error">Incorrect password</div>}
-              <button type="submit" className="login-btn">Enter Dashboard</button>
+              <button type="submit" className="login-btn">Sign In</button>
             </form>
           </div>
         </div>
@@ -96,136 +84,240 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="admin-shell">
-      {/* Header */}
-      <header className="admin-header">
-        <div className="admin-header-inner">
-          <div>
-            <h1>{tab === 'bookings' ? 'Bookings' : 'Blog Posts'}</h1>
-            <p className="admin-subtitle">Dr. Hanadi Khamiri</p>
+    <div className="adm">
+      <header className="adm-header">
+        <div className="adm-header-inner">
+          <div className="adm-brand">
+            <h1>{tab === 'bookings' ? 'Appointments' : 'Blog Manager'}</h1>
+            <span className="adm-sub">Dr. Hanadi Khamiri</span>
           </div>
-          <button className="logout-btn" onClick={() => { setAuthed(false); sessionStorage.removeItem('admin_authed'); }} aria-label="Logout">
+          <button className="adm-icon-btn" onClick={() => { setAuthed(false); sessionStorage.removeItem('admin_authed'); }} title="Sign out">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           </button>
         </div>
+        <nav className="adm-tabs">
+          <button className={`adm-tab ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>Appointments</button>
+          <button className={`adm-tab ${tab === 'blog' ? 'active' : ''}`} onClick={() => setTab('blog')}>Blog</button>
+        </nav>
       </header>
 
-      {/* Tab bar */}
-      <div className="tab-bar">
-        <button className={`tab-item ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/></svg>
-          Bookings
-        </button>
-        <button className={`tab-item ${tab === 'blog' ? 'active' : ''}`} onClick={() => setTab('blog')}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19,5V19H5V5H19M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M14,17H7V15H14V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/></svg>
-          Blog
-        </button>
-      </div>
-
-      {/* Content */}
       {tab === 'bookings' ? <BookingsPanel /> : <BlogPanel />}
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    BOOKINGS PANEL
-   ═══════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════ */
 function BookingsPanel() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
+  const [editForm, setEditForm] = useState({ patient_name: '', phone: '', email: '', service: '' });
+  const [notesId, setNotesId] = useState<string | null>(null);
+  const [notesDraft, setNotesDraft] = useState('');
+  const [saving, setSaving] = useState(false);
 
-  const fetchBookings = useCallback(async () => {
+  const fetch_ = useCallback(async () => {
     try {
       setError('');
       const res = await fetch('/api/bookings');
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-      setBookings(data.bookings || []);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Failed to load');
-    } finally {
-      setLoading(false);
-    }
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error);
+      setBookings(d.bookings || []);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed');
+    } finally { setLoading(false); }
   }, []);
 
-  useEffect(() => { fetchBookings(); }, [fetchBookings]);
+  useEffect(() => { fetch_(); }, [fetch_]);
+
+  const updateBooking = async (id: string, updates: Record<string, unknown>) => {
+    setSaving(true);
+    try {
+      const res = await fetch('/api/bookings', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, ...updates }) });
+      if (!res.ok) { const d = await res.json(); throw new Error(d.error); }
+      const d = await res.json();
+      setBookings(prev => prev.map(b => b.id === id ? d.booking : b));
+    } catch (e: unknown) { alert(e instanceof Error ? e.message : 'Update failed'); }
+    finally { setSaving(false); }
+  };
+
+  const deleteBooking = async (id: string) => {
+    if (!confirm('Delete this appointment permanently?')) return;
+    try {
+      const res = await fetch(`/api/bookings?id=${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+      setBookings(prev => prev.filter(b => b.id !== id));
+      setActiveId(null);
+    } catch { alert('Failed to delete'); }
+  };
+
+  const startEdit = (b: Booking) => {
+    setEditId(b.id);
+    setEditForm({ patient_name: b.patient_name, phone: b.phone, email: b.email, service: b.service });
+  };
+
+  const saveEdit = async () => {
+    if (!editId) return;
+    await updateBooking(editId, editForm);
+    setEditId(null);
+  };
+
+  const startNotes = (b: Booking) => {
+    setNotesId(b.id);
+    setNotesDraft(b.notes || '');
+  };
+
+  const saveNotes = async () => {
+    if (!notesId) return;
+    await updateBooking(notesId, { notes: notesDraft });
+    setNotesId(null);
+  };
 
   const filtered = filter === 'all' ? bookings : bookings.filter(b => b.status === filter);
-  const counts = {
-    all: bookings.length,
-    pending: bookings.filter(b => b.status === 'pending').length,
-    confirmed: bookings.filter(b => b.status === 'confirmed').length,
-    completed: bookings.filter(b => b.status === 'completed').length,
-  };
+  const counts: Record<string, number> = { all: bookings.length };
+  STATUSES.forEach(s => { counts[s] = bookings.filter(b => b.status === s).length; });
 
   return (
     <>
-      {/* Stats */}
-      <div className="stats-row">
-        {([['all','Total','#C9A96E'],['pending','Pending','#f59e0b'],['confirmed','Confirmed','#10b981'],['completed','Done','#6366f1']] as const).map(([key, label, color]) => (
-          <button key={key} className={`stat-chip ${filter === key ? 'active' : ''}`} onClick={() => setFilter(key)} style={{ '--chip-color': color } as React.CSSProperties}>
-            <span className="stat-num">{counts[key]}</span>
-            <span className="stat-label">{label}</span>
+      {/* Filter bar */}
+      <div className="filter-bar">
+        <button className={`filter-chip ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
+          All <span className="chip-count">{counts.all}</span>
+        </button>
+        {STATUSES.map(s => (
+          <button key={s} className={`filter-chip ${filter === s ? 'active' : ''}`} onClick={() => setFilter(s)} style={{ '--c': STATUS_META[s].color } as React.CSSProperties}>
+            {STATUS_META[s].label} <span className="chip-count">{counts[s] || 0}</span>
           </button>
         ))}
       </div>
 
-      <main className="admin-content">
+      <main className="adm-main">
         {loading ? (
-          <div className="admin-empty"><div className="loader" /><p>Loading bookings...</p></div>
+          <div className="adm-empty"><div className="spinner" /><p>Loading appointments...</p></div>
         ) : error ? (
-          <div className="admin-empty admin-error"><p>⚠️ {error}</p><button className="retry-btn" onClick={() => { setLoading(true); fetchBookings(); }}>Retry</button></div>
+          <div className="adm-empty"><p className="err-text">{error}</p><button className="btn-sm" onClick={() => { setLoading(true); fetch_(); }}>Retry</button></div>
         ) : filtered.length === 0 ? (
-          <div className="admin-empty"><p>No {filter !== 'all' ? filter : ''} bookings yet</p></div>
+          <div className="adm-empty"><p>No {filter !== 'all' ? filter : ''} appointments</p></div>
         ) : (
-          <ul className="booking-list">
+          <div className="card-list">
             {filtered.map(b => {
-              const isExpanded = expandedId === b.id;
+              const open = activeId === b.id;
+              const meta = STATUS_META[b.status] || { label: b.status, color: '#888' };
               return (
-                <li key={b.id} className={`booking-card ${isExpanded ? 'expanded' : ''}`} onClick={() => setExpandedId(isExpanded ? null : b.id)}>
-                  <div className="card-top">
-                    <div className="card-left">
-                      <div className="avatar" style={{ background: statusColors[b.status] || '#888' }}>{b.patient_name.charAt(0).toUpperCase()}</div>
-                      <div style={{ minWidth: 0 }}>
-                        <h3 className="patient-name">{b.patient_name}</h3>
-                        <p className="card-service">{b.service}</p>
-                      </div>
+                <div key={b.id} className={`card ${open ? 'open' : ''}`}>
+                  <div className="card-row" onClick={() => setActiveId(open ? null : b.id)}>
+                    <div className="card-avatar" style={{ background: meta.color }}>{b.patient_name.charAt(0).toUpperCase()}</div>
+                    <div className="card-info">
+                      <span className="card-name">{b.patient_name}</span>
+                      <span className="card-svc">{b.service}</span>
                     </div>
-                    <div className="card-right">
-                      <span className="status-badge" style={{ background: `${statusColors[b.status]}18`, color: statusColors[b.status] }}>{statusLabels[b.status] || b.status}</span>
-                      <span className="card-time">{timeAgo(b.created_at)}</span>
+                    <div className="card-end">
+                      <span className="badge" style={{ background: `${meta.color}14`, color: meta.color, borderColor: `${meta.color}30` }}>{meta.label}</span>
+                      <span className="card-date">{formatDate(b.created_at)}</span>
                     </div>
                   </div>
-                  {isExpanded && (
-                    <div className="card-details">
-                      <a href={`tel:${b.phone}`} className="detail-action" onClick={e => e.stopPropagation()}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
-                        {b.phone}
-                      </a>
-                      <a href={`mailto:${b.email}`} className="detail-action" onClick={e => e.stopPropagation()}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-                        {b.email}
-                      </a>
-                      <div className="detail-meta">Booked: {new Date(b.created_at).toLocaleString('en-AE', { dateStyle: 'medium', timeStyle: 'short' })}</div>
+
+                  {open && (
+                    <div className="card-body">
+                      {/* Contact */}
+                      <div className="detail-grid">
+                        <a href={`tel:${b.phone}`} className="detail-item" onClick={e => e.stopPropagation()}>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                          <span>{b.phone}</span>
+                        </a>
+                        <a href={`mailto:${b.email}`} className="detail-item" onClick={e => e.stopPropagation()}>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                          <span>{b.email}</span>
+                        </a>
+                      </div>
+                      <div className="detail-time">Submitted {formatDate(b.created_at)} at {formatTime(b.created_at)}</div>
+
+                      {/* Notes */}
+                      {b.notes && <div className="notes-display"><span className="notes-label">Notes</span>{b.notes}</div>}
+
+                      {/* Status selector */}
+                      <div className="status-section">
+                        <span className="section-label">Update Status</span>
+                        <div className="status-pills">
+                          {STATUSES.map(s => (
+                            <button key={s} className={`pill ${b.status === s ? 'active' : ''}`}
+                              style={{ '--c': STATUS_META[s].color } as React.CSSProperties}
+                              disabled={saving || b.status === s}
+                              onClick={() => updateBooking(b.id, { status: s })}>
+                              {STATUS_META[s].label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="action-row">
+                        <button className="btn-sm" onClick={() => startNotes(b)}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                          {b.notes ? 'Edit Notes' : 'Add Notes'}
+                        </button>
+                        <button className="btn-sm" onClick={() => startEdit(b)}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                          Edit
+                        </button>
+                        <button className="btn-sm btn-danger" onClick={() => deleteBooking(b.id)}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   )}
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
         )}
       </main>
+
+      {/* Notes modal */}
+      {notesId && (
+        <div className="modal-overlay" onClick={() => setNotesId(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <h3>Appointment Notes</h3>
+            <textarea className="modal-textarea" rows={5} value={notesDraft} onChange={e => setNotesDraft(e.target.value)} placeholder="Add clinical notes, follow-up reminders..." autoFocus />
+            <div className="modal-actions">
+              <button className="btn-sm" onClick={() => setNotesId(null)}>Cancel</button>
+              <button className="btn-sm btn-primary" onClick={saveNotes} disabled={saving}>{saving ? 'Saving...' : 'Save Notes'}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit modal */}
+      {editId && (
+        <div className="modal-overlay" onClick={() => setEditId(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <h3>Edit Appointment</h3>
+            <div className="modal-fields">
+              <label>Patient Name<input className="modal-input" value={editForm.patient_name} onChange={e => setEditForm({ ...editForm, patient_name: e.target.value })} /></label>
+              <label>Phone<input className="modal-input" value={editForm.phone} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} /></label>
+              <label>Email<input className="modal-input" value={editForm.email} onChange={e => setEditForm({ ...editForm, email: e.target.value })} /></label>
+              <label>Service<input className="modal-input" value={editForm.service} onChange={e => setEditForm({ ...editForm, service: e.target.value })} /></label>
+            </div>
+            <div className="modal-actions">
+              <button className="btn-sm" onClick={() => setEditId(null)}>Cancel</button>
+              <button className="btn-sm btn-primary" onClick={saveEdit} disabled={saving}>{saving ? 'Saving...' : 'Save Changes'}</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    BLOG PANEL
-   ═══════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════ */
 function BlogPanel() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -238,14 +330,11 @@ function BlogPanel() {
     try {
       setError('');
       const res = await fetch('/api/blog');
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-      setPosts(data.posts || []);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Failed to load');
-    } finally {
-      setLoading(false);
-    }
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error);
+      setPosts(d.posts || []);
+    } catch (e: unknown) { setError(e instanceof Error ? e.message : 'Failed'); }
+    finally { setLoading(false); }
   }, []);
 
   useEffect(() => { fetchPosts(); }, [fetchPosts]);
@@ -254,90 +343,70 @@ function BlogPanel() {
     if (!form.title || !form.category || !form.excerpt) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/blog', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch('/api/blog', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       if (!res.ok) { const d = await res.json(); throw new Error(d.error); }
       setForm({ title: '', category: '', excerpt: '', image: '', content: '' });
       setShowForm(false);
-      setLoading(true);
-      fetchPosts();
-    } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : 'Failed to create post');
-    } finally {
-      setSaving(false);
-    }
+      setLoading(true); fetchPosts();
+    } catch (e: unknown) { alert(e instanceof Error ? e.message : 'Failed'); }
+    finally { setSaving(false); }
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this blog post?')) return;
     try {
       const res = await fetch(`/api/blog?id=${id}`, { method: 'DELETE' });
-      if (!res.ok) { const d = await res.json(); throw new Error(d.error); }
+      if (!res.ok) throw new Error('Delete failed');
       setPosts(prev => prev.filter(p => p.id !== id));
-    } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : 'Failed to delete');
-    }
+    } catch { alert('Failed to delete'); }
   };
 
   return (
     <>
-      {/* Action bar */}
-      <div className="action-bar">
-        <span className="post-count">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
-        <button className="add-btn" onClick={() => setShowForm(!showForm)}>
-          {showForm ? '✕ Cancel' : '+ New Post'}
-        </button>
+      <div className="toolbar">
+        <span className="toolbar-label">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
+        <button className="btn-sm btn-primary" onClick={() => setShowForm(!showForm)}>{showForm ? 'Cancel' : '+ New Post'}</button>
       </div>
 
-      {/* New post form */}
       {showForm && (
-        <div className="blog-form-wrap">
-          <div className="blog-form">
-            <input className="form-input" placeholder="Post title *" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} />
-            <input className="form-input" placeholder="Category *" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
-            <input className="form-input" placeholder="Image URL (optional)" value={form.image} onChange={e => setForm({ ...form, image: e.target.value })} />
-            <textarea className="form-textarea" placeholder="Excerpt / summary *" rows={3} value={form.excerpt} onChange={e => setForm({ ...form, excerpt: e.target.value })} />
-            <textarea className="form-textarea" placeholder="Full content (optional)" rows={5} value={form.content} onChange={e => setForm({ ...form, content: e.target.value })} />
-            <button className="save-btn" onClick={handleCreate} disabled={saving || !form.title || !form.category || !form.excerpt}>
-              {saving ? 'Publishing...' : 'Publish Post'}
-            </button>
-          </div>
+        <div className="form-card">
+          <input className="modal-input" placeholder="Post title" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} />
+          <input className="modal-input" placeholder="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
+          <input className="modal-input" placeholder="Image URL (optional)" value={form.image} onChange={e => setForm({ ...form, image: e.target.value })} />
+          <textarea className="modal-textarea" placeholder="Excerpt / summary" rows={3} value={form.excerpt} onChange={e => setForm({ ...form, excerpt: e.target.value })} />
+          <textarea className="modal-textarea" placeholder="Full content (optional)" rows={5} value={form.content} onChange={e => setForm({ ...form, content: e.target.value })} />
+          <button className="btn-sm btn-primary full-w" onClick={handleCreate} disabled={saving || !form.title || !form.category || !form.excerpt}>{saving ? 'Publishing...' : 'Publish Post'}</button>
         </div>
       )}
 
-      <main className="admin-content">
+      <main className="adm-main">
         {loading ? (
-          <div className="admin-empty"><div className="loader" /><p>Loading posts...</p></div>
+          <div className="adm-empty"><div className="spinner" /><p>Loading posts...</p></div>
         ) : error ? (
-          <div className="admin-empty admin-error"><p>⚠️ {error}</p><button className="retry-btn" onClick={() => { setLoading(true); fetchPosts(); }}>Retry</button></div>
+          <div className="adm-empty"><p className="err-text">{error}</p><button className="btn-sm" onClick={() => { setLoading(true); fetchPosts(); }}>Retry</button></div>
         ) : posts.length === 0 ? (
-          <div className="admin-empty"><p>No blog posts yet. Tap &quot;+ New Post&quot; to create one.</p></div>
+          <div className="adm-empty"><p>No blog posts yet</p></div>
         ) : (
-          <ul className="booking-list">
+          <div className="card-list">
             {posts.map(p => (
-              <li key={p.id} className="booking-card blog-card-admin">
-                <div className="card-top">
-                  <div className="card-left" style={{ minWidth: 0 }}>
-                    <div className="avatar blog-avatar">📝</div>
-                    <div style={{ minWidth: 0 }}>
-                      <h3 className="patient-name">{p.title}</h3>
-                      <p className="card-service">{p.category}</p>
-                    </div>
+              <div key={p.id} className="card">
+                <div className="card-row">
+                  <div className="card-avatar blog-av">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                   </div>
-                  <div className="card-right">
-                    <span className="card-time">{timeAgo(p.created_at)}</span>
+                  <div className="card-info">
+                    <span className="card-name">{p.title}</span>
+                    <span className="card-svc">{p.category}</span>
                   </div>
+                  <span className="card-date">{formatDate(p.created_at)}</span>
                 </div>
                 <p className="blog-excerpt">{p.excerpt}</p>
-                <div className="blog-actions">
-                  <button className="delete-btn" onClick={() => handleDelete(p.id)}>Delete</button>
+                <div className="action-row" style={{ borderTop: '1px solid var(--border)', marginTop: '0.75rem', paddingTop: '0.75rem' }}>
+                  <button className="btn-sm btn-danger" onClick={() => handleDelete(p.id)}>Delete</button>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </main>
     </>
