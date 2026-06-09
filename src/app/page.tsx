@@ -143,8 +143,8 @@ export default function Home() {
           <div className="tech-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', marginTop: '3rem' }}>
             
             <div className="tech-card reveal delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '4/3', backgroundColor: 'var(--ivory)' }}>
-                <img src="/gbt_machine.webp" alt="GBT Machine" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '1/1', backgroundColor: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+                <img src="/gbt_machine.webp" alt="GBT Machine" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>EMS Guided Biofilm Therapy</h3>
@@ -153,8 +153,8 @@ export default function Home() {
             </div>
 
             <div className="tech-card reveal delay-2" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '4/3', backgroundColor: 'var(--ivory)' }}>
-                <img src="/itero_scanner.webp" alt="iTero Lumina Scanner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '1/1', backgroundColor: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+                <img src="/itero_scanner.webp" alt="iTero Lumina Scanner" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>iTero Lumina™ 3D Scanner</h3>
