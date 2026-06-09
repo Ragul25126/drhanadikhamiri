@@ -52,36 +52,39 @@
   position: sticky; top: 0; z-index: 50;
 }
 .adm-header-inner {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.1rem 1.25rem; max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center;
+  padding: 0 1.25rem; max-width: 860px; margin: 0 auto;
+  height: 60px; gap: 1rem;
 }
-.adm-brand h1 {
+.adm-brand {
+  display: flex; flex-direction: column; flex-shrink: 0;
+}
+.adm-name {
   font-family: var(--font-serif, 'Cormorant Garamond', serif);
-  font-size: 1.5rem; font-weight: 500; color: #fff; line-height: 1.2;
+  font-size: 1.1rem; font-weight: 500; color: #fff; line-height: 1.2;
 }
-.adm-sub { font-size: 0.7rem; color: var(--gold); letter-spacing: 1.2px; text-transform: uppercase; }
+.adm-sub { font-size: 0.6rem; color: var(--gold); letter-spacing: 1.2px; text-transform: uppercase; }
 .adm-icon-btn {
-  width: 40px; height: 40px; border-radius: 10px; border: none;
+  width: 36px; height: 36px; border-radius: 8px; border: none;
   background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5);
   display: flex; align-items: center; justify-content: center; transition: color 0.2s;
+  flex-shrink: 0;
 }
 .adm-icon-btn:active { color: #fff; }
 
-/* ── Tabs ── */
+/* ── Tabs (inline in header) ── */
 .adm-tabs {
-  display: flex; max-width: 860px; margin: 0 auto;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; gap: 0.25rem; margin-left: auto;
+  background: rgba(255,255,255,0.08); border-radius: 8px; padding: 3px;
 }
 .adm-tab {
-  flex: 1; padding: 0.7rem; border: none; background: none;
-  color: rgba(255,255,255,0.35); font-family: inherit; font-size: 0.8rem;
-  font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-  position: relative; transition: color 0.2s;
+  padding: 0.4rem 1rem; border: none; background: none;
+  color: rgba(255,255,255,0.45); font-family: inherit; font-size: 0.75rem;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+  border-radius: 6px; transition: all 0.2s; white-space: nowrap;
 }
-.adm-tab.active { color: #fff; }
-.adm-tab.active::after {
-  content: ''; position: absolute; bottom: 0; left: 25%; right: 25%;
-  height: 2px; background: var(--gold); border-radius: 2px;
+.adm-tab.active {
+  color: #fff; background: rgba(255,255,255,0.12);
 }
 
 /* ── Filter Bar ── */
@@ -284,8 +287,8 @@
 
 /* ── Desktop ── */
 @media (min-width: 640px) {
-  .adm-header-inner { padding: 1.25rem 2rem; }
-  .adm-brand h1 { font-size: 1.75rem; }
+  .adm-header-inner { padding: 0 2rem; height: 64px; }
+  .adm-name { font-size: 1.25rem; }
   .filter-bar, .toolbar { padding-left: 2rem; padding-right: 2rem; }
   .adm-main { padding: 0 2rem 4rem; }
   .form-card { padding: 0 2rem; }
