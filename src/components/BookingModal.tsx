@@ -17,6 +17,8 @@ export default function BookingModal({
   onClose: () => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [data, setData] = useState<BookingData>({
     service: '',
     name: '',
@@ -29,6 +31,8 @@ export default function BookingModal({
     setTimeout(() => {
       setCurrentStep(0);
       setData({ service: '', name: '', phone: '', email: '' });
+      setSubmitError('');
+      setIsSubmitting(false);
     }, 500);
   };
 
@@ -38,14 +42,48 @@ export default function BookingModal({
     return true;
   };
 
+  const submitBooking = async () => {
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(result.error || 'Something went wrong. Please try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Success — move to confirmation step
+      setCurrentStep(2);
+    } catch {
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const nextStep = () => {
-    if (isStepValid() && currentStep < 2) {
+    if (!isStepValid()) return;
+
+    if (currentStep === 1) {
+      // Last input step — submit to API
+      submitBooking();
+    } else if (currentStep < 2) {
       setCurrentStep(currentStep + 1);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 0) {
+      setSubmitError('');
       setCurrentStep(currentStep - 1);
     }
   };
@@ -127,6 +165,19 @@ export default function BookingModal({
                 <label htmlFor="patientEmail">Email Address</label>
               </div>
             </form>
+            {submitError && (
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.75rem 1rem',
+                backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                border: '1px solid rgba(220, 53, 69, 0.3)',
+                borderRadius: '8px',
+                color: '#dc3545',
+                fontSize: '0.9rem',
+              }}>
+                {submitError}
+              </div>
+            )}
           </div>
 
           {/* Step 3 (Success) */}
@@ -164,9 +215,10 @@ export default function BookingModal({
             <button
               className="btn btn-gold"
               onClick={nextStep}
-              disabled={!isStepValid()}
+              disabled={!isStepValid() || isSubmitting}
+              style={{ opacity: isSubmitting ? 0.7 : 1 }}
             >
-              {currentStep === 1 ? 'Confirm Request' : 'Continue'}
+              {isSubmitting ? 'Submitting...' : currentStep === 1 ? 'Confirm Request' : 'Continue'}
             </button>
           </div>
         )}

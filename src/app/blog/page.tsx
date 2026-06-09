@@ -8,8 +8,45 @@ import ScrollProgress from '@/components/ScrollProgress';
 import BookingModal from '@/components/BookingModal';
 import FloatingWidget from '@/components/FloatingWidget';
 
+type BlogPost = {
+  id: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  image: string;
+  created_at: string;
+};
+
+const fallbackPosts: BlogPost[] = [
+  {
+    id: '1',
+    title: "The Ultimate Guide to Guided Biofilm Therapy (GBT)",
+    category: "Dental Hygiene",
+    excerpt: "Discover why the traditional scale and polish is a thing of the past. GBT offers a pain-free, spa-like experience that protects your enamel while delivering a flawless clean.",
+    image: "/gbt_machine.webp",
+    created_at: "2026-06-08T00:00:00Z",
+  },
+  {
+    id: '2',
+    title: "Veneers vs. Invisalign: Which is Right for You?",
+    category: "Cosmetic Dentistry",
+    excerpt: "Both offer stunning results, but the journey and outcome differ. We break down the differences between immediate cosmetic enhancement and orthodontic correction.",
+    image: "/after-new.png",
+    created_at: "2026-05-22T00:00:00Z",
+  },
+  {
+    id: '3',
+    title: "How Digital 3D Scanners Are Changing Dentistry",
+    category: "Advanced Technology",
+    excerpt: "Say goodbye to messy dental impressions. Learn how the iTero Lumina scanner provides exact 3D models of your teeth instantly and comfortably.",
+    image: "/itero_scanner.webp",
+    created_at: "2026-04-15T00:00:00Z",
+  },
+];
+
 export default function BlogPage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [posts, setPosts] = useState<BlogPost[]>(fallbackPosts);
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -26,32 +63,17 @@ export default function BlogPage() {
     return () => revealObserver.disconnect();
   }, []);
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Ultimate Guide to Guided Biofilm Therapy (GBT)",
-      category: "Dental Hygiene",
-      date: "June 8, 2026",
-      excerpt: "Discover why the traditional scale and polish is a thing of the past. GBT offers a pain-free, spa-like experience that protects your enamel while delivering a flawless clean.",
-      image: "/gbt_machine.webp"
-    },
-    {
-      id: 2,
-      title: "Veneers vs. Invisalign: Which is Right for You?",
-      category: "Cosmetic Dentistry",
-      date: "May 22, 2026",
-      excerpt: "Both offer stunning results, but the journey and outcome differ. We break down the differences between immediate cosmetic enhancement and orthodontic correction.",
-      image: "/after-new.png"
-    },
-    {
-      id: 3,
-      title: "How Digital 3D Scanners Are Changing Dentistry",
-      category: "Advanced Technology",
-      date: "April 15, 2026",
-      excerpt: "Say goodbye to messy dental impressions. Learn how the iTero Lumina scanner provides exact 3D models of your teeth instantly and comfortably.",
-      image: "/itero_scanner.webp"
-    }
-  ];
+  // Fetch from Supabase — use fallback if API fails or returns empty
+  useEffect(() => {
+    fetch('/api/blog')
+      .then(r => r.json())
+      .then(data => {
+        if (data.posts && data.posts.length > 0) {
+          setPosts(data.posts);
+        }
+      })
+      .catch(() => { /* keep fallback */ });
+  }, []);
 
   return (
     <>
@@ -72,14 +94,14 @@ export default function BlogPage() {
           </div>
 
           <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem', paddingBottom: '6rem' }}>
-            {blogPosts.map((post, index) => (
+            {posts.map((post, index) => (
               <article key={post.id} className={`blog-card reveal delay-${(index % 3) + 1} group`} style={{ cursor: 'pointer' }}>
                 <div className="blog-img-wrap" style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '4/3', marginBottom: '1.5rem', backgroundColor: 'var(--ivory)' }}>
-                  <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} className="blog-img" />
+                  {post.image && <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} className="blog-img" />}
                 </div>
                 <div className="blog-meta" style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem' }}>
                   <span style={{ color: 'var(--gold)', fontWeight: '600' }}>{post.category}</span>
-                  <span style={{ color: '#888' }}>{post.date}</span>
+                  <span style={{ color: '#888' }}>{new Date(post.created_at).toLocaleDateString('en-AE', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                 </div>
                 <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem', lineHeight: '1.3', fontFamily: 'var(--font-serif)' }}>{post.title}</h3>
                 <p style={{ color: '#555', marginBottom: '1.5rem', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{post.excerpt}</p>
