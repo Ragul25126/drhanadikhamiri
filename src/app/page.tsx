@@ -68,7 +68,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <img src="/doctor-hero-final.png" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <img src="/image1.jpeg" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
@@ -101,7 +101,7 @@ export default function Home() {
       <section id="about">
         <div className="container about-container">
           <div className="about-image reveal reveal-left">
-            <div className="about-img-wrap"><img src="/doctor-about-final.png" alt="Dr. Hanadi Clinic" onError={(e) => (e.currentTarget.style.display='none')} /></div>
+            <div className="about-img-wrap"><img src="/image2.JPEG" alt="Dr. Hanadi Clinic" onError={(e) => (e.currentTarget.style.display='none')} /></div>
             <div className="about-badge">
               <div className="badge-inner"><strong>BDS</strong><span style={{ fontSize: '0.75rem', letterSpacing: '1.5px' }}>UNIVERSITY OF<br/>SHARJAH</span></div>
             </div>
