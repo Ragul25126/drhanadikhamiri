@@ -60,7 +60,7 @@ export default function Home() {
         <div className="container hero-container">
           <div className="hero-content">
             <h1 className="reveal reveal-left">Your Smile, <br/><span>Redefined.</span></h1>
-            <p className="subtitle reveal reveal-left delay-1">Dr. Hanadi Khamiri — Cosmetic & General Dentist, Dubai. Crafting bespoke, natural smiles with over a decade of luxury dental expertise.</p>
+            <p className="subtitle reveal reveal-left delay-1">Dr. Hanadi Khamiri — Certified Invisalign Provider, Cosmetic & General Dentist, Dubai. Crafting bespoke, natural smiles with over a decade of luxury dental expertise.</p>
             <div className="hero-ctas reveal reveal-left delay-2">
               <button className="btn btn-gold" onClick={() => setIsBookingOpen(true)}>Reserve Consultation</button>
               <a href="#services" className="btn btn-ghost">Explore Treatments</a>
@@ -68,7 +68,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <img src="/image1.jpeg" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <img src="/newhero_image.jpeg" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
@@ -127,8 +127,41 @@ export default function Home() {
             <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z"/></svg></div><h3>Invisalign Aligners</h3><p>Discreetly and comfortably straighten your teeth with customized, virtually invisible aligners. Top-tier certified provider.</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>Consult Now</div></div>
             <div className="service-card reveal delay-3"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M18 10V14H14V10H18M10 10V14H6V10H10Z"/></svg></div><h3>Ceramic Crowns</h3><p>Restore the strength, function, and aesthetics of damaged teeth with premium, highly durable ceramic restorations.</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>Consult Now</div></div>
             <div className="service-card reveal delay-1"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z"/></svg></div><h3>Aesthetic Fillings</h3><p>Advanced tooth-colored composite restorations that blend seamlessly with your natural enamel to repair decay invisibly.</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>Consult Now</div></div>
-            <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22Z"/></svg></div><h3>Complete Hygiene</h3><p>Thorough oral examinations, digital 3D diagnostics, and professional scaling for optimal, long-term gum health.</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>Consult Now</div></div>
+            <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22Z"/></svg></div><h3>Tooth Spa by using GBT</h3><p>Experience the ultimate clean with Guided Biofilm Therapy (GBT). A gentle, warm-water spa-like treatment for flawless oral hygiene without the pain.</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>Consult Now</div></div>
             <div className="service-card reveal delay-3"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M16 11C17.66 11 18.9 9.66 18.9 8C18.9 6.34 17.66 5 16 5Z"/></svg></div><h3>Family Care</h3><p>Specialized, empathetic dentistry tailored to the unique physiological oral health needs and absolute comfort of your family.</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>Consult Now</div></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Advanced Technology Section */}
+      <section id="technology" style={{ padding: 'var(--section-padding) 0', backgroundColor: 'var(--pearl)' }}>
+        <div className="container">
+          <div className="section-header reveal">
+            <h2>The Future of Comfort</h2>
+            <p style={{ marginTop: '1rem' }}>We combine our clinical expertise with state-of-the-art technology to ensure your visits are not only highly effective, but profoundly comfortable and fast.</p>
+          </div>
+          <div className="tech-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', marginTop: '3rem' }}>
+            
+            <div className="tech-card reveal delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '4/3', backgroundColor: 'var(--ivory)' }}>
+                <img src="/gbt_machine.webp" alt="GBT Machine" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div>
+                <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>EMS Guided Biofilm Therapy</h3>
+                <p>Gone are the days of painful scraping. Our authentic Swiss EMS GBT machine uses a gentle stream of warm water, air, and ultra-fine powder to remove stains and plaque. It feels like a soothing spa day for your teeth, leaving you with a brilliantly clean and polished smile in absolute comfort.</p>
+              </div>
+            </div>
+
+            <div className="tech-card reveal delay-2" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '4/3', backgroundColor: 'var(--ivory)' }}>
+                <img src="/itero_scanner.webp" alt="iTero Lumina Scanner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div>
+                <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>iTero Lumina™ 3D Scanner</h3>
+                <p>Say goodbye to gooey, uncomfortable dental impressions. With the revolutionary iTero scanner, we capture a highly accurate, full 3D model of your teeth in just minutes. See your future Invisalign smile instantly on screen and experience digital precision like never before.</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
