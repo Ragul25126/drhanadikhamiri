@@ -7,19 +7,20 @@ export default function Preloader() {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    const handleLoad = () => {
+    // Show the preloader for a very short duration as an entry effect
+    // instead of waiting for all heavy images to load.
+    const fadeOutTimer = setTimeout(() => {
       setIsLoaded(true);
-      setTimeout(() => {
-        setIsRemoved(true);
-      }, 800);
-    };
+    }, 400);
 
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
-    }
+    const removeTimer = setTimeout(() => {
+      setIsRemoved(true);
+    }, 1200); // 400ms display + 800ms fade-out transition
+
+    return () => {
+      clearTimeout(fadeOutTimer);
+      clearTimeout(removeTimer);
+    };
   }, []);
 
   if (isRemoved) return null;
