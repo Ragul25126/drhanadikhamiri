@@ -173,65 +173,45 @@ export default function Home() {
             <h2>Follow The Journey</h2>
             <p style={{ marginTop: '1rem' }}>Join our community on Instagram for daily dental tips, behind-the-scenes, and our latest smile transformations.</p>
           </div>
-          <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
-            {[
-              '/cases/invisalign/img-4950.webp',
-              '/cases/gaps-fixed/img-0050.webp',
-              '/cases/aesthetic-fillings/img-6971.webp',
-              '/cases/invisalign/upper.webp'
-            ].map((img, idx) => (
-              <a 
-                key={idx}
-                href="https://www.instagram.com/dr.hanadikhamiri/reels/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="insta-post reveal delay-1"
-                style={{ 
-                  display: 'block', 
-                  position: 'relative', 
-                  aspectRatio: '9/16', 
-                  borderRadius: '16px', 
-                  overflow: 'hidden',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
-                }}
-              >
-                <img src={img} alt="Instagram Reel" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} className="insta-img" />
-                
-                {/* Play Button Overlay */}
-                <div style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: '50px',
-                  height: '50px',
-                  backgroundColor: 'rgba(0,0,0,0.5)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  zIndex: 2,
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{ marginLeft: '4px' }}>
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </div>
-                
-                <div className="insta-overlay" style={{
-                  position: 'absolute',
-                  top: 0, left: 0, right: 0, bottom: 0,
-                  background: 'rgba(0,0,0,0.6)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  opacity: 0,
-                  transition: 'opacity 0.3s ease',
-                  zIndex: 3
-                }}>
-                  <span style={{ color: 'white', fontWeight: 600, letterSpacing: '1px' }}>Watch Reel</span>
-                </div>
-              </a>
-            ))}
+          <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem', justifyItems: 'center' }}>
+            {/* 
+              DEVELOPER NOTE FOR USER:
+              To show your original reels, replace "PLACEHOLDER_REEL_URL" with your actual Reel link.
+              Example: https://www.instagram.com/reel/C-XyZ123/embed/
+            */}
+            
+            {/* Reel 1 */}
+            <iframe 
+              src="https://www.instagram.com/reel/C_W3T4OtfR1/embed" 
+              width="320" 
+              height="580" 
+              frameBorder="0" 
+              scrolling="no" 
+              allowTransparency={true}
+              style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', background: 'white' }}
+            ></iframe>
+
+            {/* Reel 2 */}
+            <iframe 
+              src="https://www.instagram.com/reel/C_W3T4OtfR1/embed" 
+              width="320" 
+              height="580" 
+              frameBorder="0" 
+              scrolling="no" 
+              allowTransparency={true}
+              style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', background: 'white' }}
+            ></iframe>
+
+            {/* Reel 3 */}
+            <iframe 
+              src="https://www.instagram.com/reel/C_W3T4OtfR1/embed" 
+              width="320" 
+              height="580" 
+              frameBorder="0" 
+              scrolling="no" 
+              allowTransparency={true}
+              style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', background: 'white' }}
+            ></iframe>
           </div>
           <div className="reveal" style={{ textAlign: 'center', marginTop: '3rem' }}>
             <a href="https://www.instagram.com/dr.hanadikhamiri" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
