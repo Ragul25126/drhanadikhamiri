@@ -174,15 +174,10 @@ export default function Home() {
             <p style={{ marginTop: '1rem' }}>Join our community on Instagram for daily dental tips, behind-the-scenes, and our latest smile transformations.</p>
           </div>
           <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem', justifyItems: 'center' }}>
-            {/* 
-              DEVELOPER NOTE FOR USER:
-              To show your original reels, replace "PLACEHOLDER_REEL_URL" with your actual Reel link.
-              Example: https://www.instagram.com/reel/C-XyZ123/embed/
-            */}
             
             {/* Reel 1 */}
             <iframe 
-              src="https://www.instagram.com/reel/C_W3T4OtfR1/embed" 
+              src="https://www.instagram.com/reel/DZ-EiJrtsHl/embed" 
               width="320" 
               height="580" 
               frameBorder="0" 
@@ -193,7 +188,7 @@ export default function Home() {
 
             {/* Reel 2 */}
             <iframe 
-              src="https://www.instagram.com/reel/C_W3T4OtfR1/embed" 
+              src="https://www.instagram.com/reel/DZkYdXEtK4_/embed" 
               width="320" 
               height="580" 
               frameBorder="0" 
@@ -204,7 +199,7 @@ export default function Home() {
 
             {/* Reel 3 */}
             <iframe 
-              src="https://www.instagram.com/reel/C_W3T4OtfR1/embed" 
+              src="https://www.instagram.com/reel/DZGFb19NHFx/embed" 
               width="320" 
               height="580" 
               frameBorder="0" 
