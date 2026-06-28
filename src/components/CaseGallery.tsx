@@ -8,9 +8,9 @@ const cases = [
     title: 'Invisalign Treatment',
     description: 'A customized clear aligner treatment for correcting teeth alignment.',
     images: [
-      '/cases/invisalign/img-4950.jpg', 
-      '/cases/invisalign/img-4948.jpg', 
-      '/cases/invisalign/upper.jpg'
+      '/cases/invisalign/img-4950.webp', 
+      '/cases/invisalign/img-4948.webp', 
+      '/cases/invisalign/upper.webp'
     ]
   },
   {
@@ -18,10 +18,10 @@ const cases = [
     title: 'Gaps Fixed by Invisalign',
     description: 'Closing visible gaps seamlessly and restoring natural aesthetics with Invisalign.',
     images: [
-      '/cases/gaps-fixed/img-0050.jpg', 
-      '/cases/gaps-fixed/after-photo.jpg', 
-      '/cases/gaps-fixed/img-3.jpg', 
-      '/cases/gaps-fixed/img-2-copy.jpg'
+      '/cases/gaps-fixed/img-0050.webp', 
+      '/cases/gaps-fixed/after-photo.webp', 
+      '/cases/gaps-fixed/img-3.webp', 
+      '/cases/gaps-fixed/img-2-copy.webp'
     ]
   },
   {
@@ -29,10 +29,10 @@ const cases = [
     title: 'Invisalign & Aesthetic Fillings',
     description: 'A combined approach of precise alignment and tiny aesthetic fillings for a flawless finish.',
     images: [
-      '/cases/aesthetic-fillings/img-6971.jpg', 
-      '/cases/aesthetic-fillings/img-6962.jpg', 
-      '/cases/aesthetic-fillings/img-2782.jpg', 
-      '/cases/aesthetic-fillings/img-2768.jpg'
+      '/cases/aesthetic-fillings/img-6971.webp', 
+      '/cases/aesthetic-fillings/img-6962.webp', 
+      '/cases/aesthetic-fillings/img-2782.webp', 
+      '/cases/aesthetic-fillings/img-2768.webp'
     ]
   }
 ];
