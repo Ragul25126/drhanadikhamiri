@@ -48,7 +48,6 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
               <div className="nav-links">
                   <Link href="/#about" className="nav-item">About</Link>
                   <Link href="/#services" className="nav-item">Treatments</Link>
-                  <Link href="/#transformations" className="nav-item">Results</Link>
                   <Link href="/blog" className={`nav-item ${pathname === '/blog' ? 'active-link' : ''}`}>Blog</Link>
                   <Link href="/#faq" className="nav-item">FAQ</Link>
                   <button className="btn-nav-book" onClick={onBookClick}>Book Consultation</button>
@@ -69,7 +68,6 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
           }}>Dr. Hanadi Khamiri<span>.</span></Link>
           <Link href="/#about" className="mobile-nav-link" onClick={closeMenu}>About</Link>
           <Link href="/#services" className="mobile-nav-link" onClick={closeMenu}>Treatments</Link>
-          <Link href="/#transformations" className="mobile-nav-link" onClick={closeMenu}>Results</Link>
           <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>Blog</Link>
           <Link href="/#faq" className="mobile-nav-link" onClick={closeMenu}>FAQ</Link>
           <button className="btn-nav-book" style={{ background: 'var(--gold)', borderColor: 'var(--gold)' }} onClick={() => { closeMenu(); onBookClick(); }}>Book Consultation</button>

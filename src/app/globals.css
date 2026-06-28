@@ -322,3 +322,11 @@ footer { background-color: var(--charcoal); color: var(--white); padding: 6rem 0
 .modal-footer-btns { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #f0f0f0; }
 @media (max-width: 600px) { .modal-footer-btns { flex-direction: column-reverse; margin-top: auto; border: none; } .modal-footer-btns .btn { width: 100%; } }
 .modal-footer-btns button:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+.insta-post:hover .insta-img {
+  transform: scale(1.1);
+}
+.insta-post:hover .insta-overlay {
+  opacity: 1 !important;
+}
+
