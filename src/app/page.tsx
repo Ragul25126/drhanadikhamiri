@@ -8,7 +8,7 @@ import Navbar from '@/components/Navbar';
 import ScrollProgress from '@/components/ScrollProgress';
 import BookingModal from '@/components/BookingModal';
 import FloatingWidget from '@/components/FloatingWidget';
-import FloatingWidget from '@/components/FloatingWidget';
+
 import FAQ from '@/components/FAQ';
 import Reviews from '@/components/Reviews';
 
