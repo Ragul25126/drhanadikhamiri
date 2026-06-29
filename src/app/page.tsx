@@ -175,17 +175,6 @@ export default function Home() {
           </div>
           <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem', justifyItems: 'center' }}>
             
-            {/* Reel 1 */}
-            <iframe 
-              src="https://www.instagram.com/reel/DZ-EiJrtsHl/embed" 
-              width="320" 
-              height="580" 
-              frameBorder="0" 
-              scrolling="no" 
-              allowTransparency={true}
-              style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', background: 'white' }}
-            ></iframe>
-
             {/* Reel 2 */}
             <iframe 
               src="https://www.instagram.com/reel/DZkYdXEtK4_/embed" 
