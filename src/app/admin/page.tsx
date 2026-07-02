@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { supabase } from '@/lib/supabase';
+import type { User } from '@supabase/supabase-js';
 import './admin.css';
-
-const ADMIN_PASSWORD = '12345';
 
 /* ── Types ── */
 type Booking = {
@@ -25,6 +25,13 @@ type BlogPost = {
   image: string;
   content: string;
   created_at: string;
+};
+
+type AdminUser = {
+  id: string;
+  email: string;
+  created_at: string;
+  last_sign_in_at: string | null;
 };
 
 /* ── Constants ── */
@@ -49,22 +56,61 @@ function formatTime(d: string) {
    ROOT
    ═══════════════════════════════════════ */
 export default function AdminPage() {
-  const [authed, setAuthed] = useState(false);
+  const [session, setSession] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
-  const [pwError, setPwError] = useState(false);
-  const [tab, setTab] = useState<'bookings' | 'blog'>('bookings');
+  const [loginError, setLoginError] = useState('');
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [tab, setTab] = useState<'bookings' | 'blog' | 'users'>('bookings');
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem('admin_authed') === '1') setAuthed(true);
+    supabase.auth.getUser().then(({ data }) => {
+      setSession(data.user);
+      setAuthLoading(false);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setSession(session?.user ?? null);
+      setAuthLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const handleLogin = () => {
-    if (pw === ADMIN_PASSWORD) { setAuthed(true); setPwError(false); sessionStorage.setItem('admin_authed', '1'); }
-    else setPwError(true);
+  const handleLogin = async () => {
+    if (!email || !pw) {
+      setLoginError('Please enter email and password');
+      return;
+    }
+    setLoggingIn(true);
+    setLoginError('');
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password: pw,
+    });
+    setLoggingIn(false);
+    if (error) {
+      setLoginError(error.message || 'Authentication failed');
+    }
   };
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
+
+  if (authLoading) {
+    return (
+      <div className="adm">
+        <div className="login-screen">
+          <div className="spinner" />
+        </div>
+      </div>
+    );
+  }
+
   /* ── Login ── */
-  if (!authed) {
+  if (!session) {
     return (
       <div className="adm">
         <div className="login-screen">
@@ -73,9 +119,10 @@ export default function AdminPage() {
             <h1>Admin Panel</h1>
             <p>Dr. Hanadi Khamiri Clinic</p>
             <form onSubmit={e => { e.preventDefault(); handleLogin(); }}>
-              <input type="password" className="login-input" placeholder="Password" value={pw} onChange={e => { setPw(e.target.value); setPwError(false); }} autoFocus />
-              {pwError && <div className="login-error">Incorrect password</div>}
-              <button type="submit" className="login-btn">Sign In</button>
+              <input type="email" className="login-input" placeholder="Admin Email" value={email} onChange={e => { setEmail(e.target.value); setLoginError(''); }} autoFocus style={{ marginBottom: '0.75rem' }} />
+              <input type="password" className="login-input" placeholder="Password" value={pw} onChange={e => { setPw(e.target.value); setLoginError(''); }} />
+              {loginError && <div className="login-error">{loginError}</div>}
+              <button type="submit" className="login-btn" disabled={loggingIn}>{loggingIn ? 'Signing In...' : 'Sign In'}</button>
             </form>
           </div>
         </div>
@@ -89,19 +136,20 @@ export default function AdminPage() {
         <div className="adm-top-row">
           <div className="adm-brand">
             <span className="adm-name">Dr. Hanadi Khamiri</span>
-            <span className="adm-sub">Clinic Dashboard</span>
+            <span className="adm-sub">Clinic Dashboard ({session.email})</span>
           </div>
-          <button className="adm-icon-btn" onClick={() => { setAuthed(false); sessionStorage.removeItem('admin_authed'); }} title="Sign out">
+          <button className="adm-icon-btn" onClick={handleSignOut} title="Sign out">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           </button>
         </div>
         <nav className="adm-tabs">
           <button className={`adm-tab ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>Appointments</button>
           <button className={`adm-tab ${tab === 'blog' ? 'active' : ''}`} onClick={() => setTab('blog')}>Blog</button>
+          <button className={`adm-tab ${tab === 'users' ? 'active' : ''}`} onClick={() => setTab('users')}>Staff / Users</button>
         </nav>
       </header>
 
-      {tab === 'bookings' ? <BookingsPanel /> : <BlogPanel />}
+      {tab === 'bookings' ? <BookingsPanel /> : tab === 'blog' ? <BlogPanel /> : <UsersPanel />}
     </div>
   );
 }
@@ -412,3 +460,123 @@ function BlogPanel() {
     </>
   );
 }
+
+/* ═══════════════════════════════════════
+   USERS PANEL
+   ═══════════════════════════════════════ */
+function UsersPanel() {
+  const [users, setUsers] = useState<AdminUser[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState({ email: '', password: '' });
+
+  const fetchUsers = useCallback(async () => {
+    try {
+      setError('');
+      const res = await fetch('/api/admin/users');
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error);
+      setUsers(d.users || []);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Failed to load users');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { fetchUsers(); }, [fetchUsers]);
+
+  const handleCreate = async () => {
+    if (!form.email || !form.password) return;
+    setSaving(true);
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error);
+      setForm({ email: '', password: '' });
+      setShowForm(false);
+      setLoading(true);
+      fetchUsers();
+    } catch (e: unknown) {
+      alert(e instanceof Error ? e.message : 'Failed to create user');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async (id: string, email: string) => {
+    if (!confirm(`Delete admin account for ${email}?`)) return;
+    try {
+      const res = await fetch(`/api/admin/users?id=${id}`, { method: 'DELETE' });
+      if (!res.ok) {
+        const d = await res.json();
+        throw new Error(d.error || 'Delete failed');
+      }
+      setUsers(prev => prev.filter(u => u.id !== id));
+    } catch (e: unknown) {
+      alert(e instanceof Error ? e.message : 'Failed to delete user');
+    }
+  };
+
+  return (
+    <>
+      <div className="toolbar">
+        <span className="toolbar-label">{users.length} staff account{users.length !== 1 ? 's' : ''}</span>
+        <button className="btn-sm btn-primary" onClick={() => setShowForm(!showForm)}>{showForm ? 'Cancel' : '+ New Staff User'}</button>
+      </div>
+
+      {showForm && (
+        <div className="form-card">
+          <h4 style={{ marginBottom: '1rem', color: 'var(--foreground)', fontSize: '1.1rem' }}>Add New Admin Staff</h4>
+          <input type="email" className="modal-input" placeholder="Staff Email Address" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+          <input type="password" className="modal-input" placeholder="Temporary Password (min 6 chars)" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+          <button className="btn-sm btn-primary full-w" onClick={handleCreate} disabled={saving || !form.email || form.password.length < 6}>{saving ? 'Creating...' : 'Create Staff Account'}</button>
+        </div>
+      )}
+
+      <main className="adm-main">
+        {loading ? (
+          <div className="adm-empty"><div className="spinner" /><p>Loading staff users...</p></div>
+        ) : error ? (
+          <div className="adm-empty">
+            <p className="err-text">{error}</p>
+            <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginTop: '0.5rem', maxWidth: '400px', textAlign: 'center' }}>Make sure SUPABASE_SERVICE_ROLE_KEY is set in your .env.local file to enable user management.</p>
+            <button className="btn-sm" onClick={() => { setLoading(true); fetchUsers(); }} style={{ marginTop: '1rem' }}>Retry</button>
+          </div>
+        ) : users.length === 0 ? (
+          <div className="adm-empty"><p>No staff accounts found</p></div>
+        ) : (
+          <div className="card-list">
+            {users.map(u => (
+              <div key={u.id} className="card">
+                <div className="card-row">
+                  <div className="card-avatar" style={{ background: '#6366f1' }}>
+                    {u.email.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="card-info">
+                    <span className="card-name">{u.email}</span>
+                    <span className="card-svc">ID: {u.id}</span>
+                  </div>
+                  <div className="card-end">
+                    <span className="card-date">Created {formatDate(u.created_at)}</span>
+                    {u.last_sign_in_at && <span style={{ fontSize: '0.75rem', color: 'var(--muted)', display: 'block' }}>Last active: {formatDate(u.last_sign_in_at)}</span>}
+                  </div>
+                </div>
+                <div className="action-row" style={{ borderTop: '1px solid var(--border)', marginTop: '0.75rem', paddingTop: '0.75rem' }}>
+                  <button className="btn-sm btn-danger" onClick={() => handleDelete(u.id, u.email)}>Delete Account</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+    </>
+  );
+}
+

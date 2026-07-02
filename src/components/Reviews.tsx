@@ -27,13 +27,16 @@ const reviews = [
   }
 ];
 
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+
 export default function Reviews() {
+  const { dict } = useLanguage();
   return (
     <section id="reviews">
       <div className="container">
         <div className="section-header reveal">
-          <h2>Patient Testimonials</h2>
-          <p style={{ marginTop: '1rem' }}>Read about the world-class experiences of our valued clients.</p>
+          <h2>{dict.reviewsSection.h2}</h2>
+          <p style={{ marginTop: '1rem' }}>{dict.reviewsSection.sub}</p>
         </div>
         <div className="reviews-grid">
           {reviews.map((review, idx) => (
@@ -48,3 +51,4 @@ export default function Reviews() {
     </section>
   );
 }
+

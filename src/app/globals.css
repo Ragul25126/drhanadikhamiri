@@ -23,6 +23,14 @@ body {
     background-color: var(--pearl); line-height: 1.6;
     overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
+html[dir="rtl"] body {
+    font-family: var(--font-arabic), var(--font-sans), sans-serif;
+}
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4, html[dir="rtl"] h5, html[dir="rtl"] h6 {
+    font-family: var(--font-arabic), var(--font-serif), serif;
+    font-weight: 700;
+}
+
 
 /* Scroll Progress Bar */
 .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--gold); z-index: 1005; transition: width 0.1s ease; }
