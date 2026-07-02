@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -15,6 +15,7 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Phone number must be at least 8 characters' }, { status: 400 });
     }
 
+    const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('bookings')
       .insert([{ service, patient_name: name, phone, email, status: 'booked', notes: '' }])
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
+    const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('bookings')
       .select('*')
@@ -73,6 +75,7 @@ export async function PATCH(request: Request) {
       return Response.json({ error: 'No valid fields to update' }, { status: 400 });
     }
 
+    const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('bookings')
       .update(allowed)
@@ -100,6 +103,7 @@ export async function DELETE(request: Request) {
       return Response.json({ error: 'Booking id is required' }, { status: 400 });
     }
 
+    const supabase = getSupabaseAdmin();
     const { error } = await supabase.from('bookings').delete().eq('id', id);
 
     if (error) {

@@ -1,7 +1,8 @@
-import { supabase } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 
 export async function GET() {
   try {
+    const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
       return Response.json({ error: 'Title, category, and excerpt are required' }, { status: 400 });
     }
 
+    const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('blog_posts')
       .insert([{ title, category, excerpt, image: image || '', content: content || '' }])
@@ -54,6 +56,7 @@ export async function DELETE(request: Request) {
       return Response.json({ error: 'Blog post id is required' }, { status: 400 });
     }
 
+    const supabase = getSupabaseAdmin();
     const { error } = await supabase.from('blog_posts').delete().eq('id', id);
 
     if (error) {
