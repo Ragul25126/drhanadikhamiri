@@ -65,7 +65,7 @@ export default function BlogPage() {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     return () => revealObserver.disconnect();
-  }, []);
+  }, [posts]);
 
   // Fetch from Supabase — use fallback if API fails or returns empty
   useEffect(() => {
