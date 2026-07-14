@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import BlogPostShell from '@/components/BlogPostShell';
 
 /* ── Types ── */
 type BlogPost = {
@@ -233,7 +234,7 @@ export default async function BlogPostPage({
   };
 
   return (
-    <>
+    <BlogPostShell>
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -401,6 +402,6 @@ export default async function BlogPostPage({
           </div>
         </div>
       </main>
-    </>
+    </BlogPostShell>
   );
 }
