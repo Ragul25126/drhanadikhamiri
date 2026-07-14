@@ -1,8 +1,27 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const slug = searchParams.get('slug');
+
     const supabase = getSupabaseAdmin();
+
+    if (slug) {
+      // Fetch single post by slug
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+
+      if (error) {
+        return Response.json({ error: 'Post not found' }, { status: 404 });
+      }
+      return Response.json({ post: data });
+    }
+
+    // Fetch all posts
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')
@@ -23,16 +42,23 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, category, excerpt, image, content } = body;
+    const { title, slug, category, excerpt, image, content } = body;
 
     if (!title || !category || !excerpt) {
       return Response.json({ error: 'Title, category, and excerpt are required' }, { status: 400 });
     }
 
+    // Auto-generate slug from title if not provided
+    const finalSlug = slug || title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+
     const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('blog_posts')
-      .insert([{ title, category, excerpt, image: image || '', content: content || '' }])
+      .insert([{ title, slug: finalSlug, category, excerpt, image: image || '', content: content || '' }])
       .select();
 
     if (error) {
