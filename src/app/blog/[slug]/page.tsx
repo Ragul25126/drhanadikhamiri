@@ -140,7 +140,7 @@ export default async function BlogPostPage({
         description:
           'Dr. Hanadi Khamiri is a luxury cosmetic and general dentist based in Al Safa, Dubai, with over 11 years of experience in veneers, Invisalign, GBT cleaning, and smile design.',
         url: siteUrl,
-        telephone: '+971567847844',
+        telephone: ['+971567847844', '+971544432808'],
         priceRange: '$$$$',
         address: {
           '@type': 'PostalAddress',

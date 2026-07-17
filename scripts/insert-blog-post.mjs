@@ -99,7 +99,7 @@ If a clinic rushes through any of these steps, that is information worth having.
 
 ### How do I book an appointment with Dr. Hanadi Khamiri?
 
-You can use the booking form on this website or call the clinic directly at +971 567847844. The clinic is located at Ferdous Building 4, Al Wasl Road, Al Safa, Dubai.
+You can use the booking form on this website or call the clinic directly at +971 567847844 or +971 54 443 2808. The clinic is located at Ferdous Building 4, Al Wasl Road, Al Safa, Dubai.
 
 ### Does Dr. Khamiri offer Invisalign in Al Safa?
 
