@@ -25,8 +25,74 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: 'Dr. Hanadi Khamiri | Luxury Cosmetic Dentist Dubai',
-  description: 'Dr. Hanadi Khamiri — Cosmetic & General Dentist in Dubai. Over 11 years of experience in luxury dental care, cosmetic veneers, and Invisalign.',
+  metadataBase: new URL('https://drhanadikhamiri.com'),
+  title: {
+    default: 'Dr. Hanadi Khamiri | Best Invisalign & Cosmetic Dentist Dubai',
+    template: '%s | Dr. Hanadi Khamiri — Dubai Dental Clinic',
+  },
+  description:
+    'Looking for the best Invisalign dentist in Dubai or premium cosmetic dentistry? Dr. Hanadi Khamiri is a Top 1% Certified Invisalign Provider & Luxury Cosmetic Dentist in Al Safa, Dubai with 11+ years of expertise in clear aligners, porcelain veneers, and digital smile design.',
+  keywords: [
+    'Best Invisalign Dentist Dubai',
+    'Invisalign Dubai',
+    'Best Cosmetic Dentist Dubai',
+    'Top Invisalign Doctor Dubai',
+    'Porcelain Veneers Dubai',
+    'Cosmetic Dentistry Al Safa',
+    'Smile Makeover Dubai',
+    'Clear Aligners Dubai',
+    'Dr Hanadi Khamiri',
+    'Bin Arab Dental Centre',
+    'iTero Lumina Scanner Dubai',
+    'Guided Biofilm Therapy GBT Dubai',
+  ],
+  authors: [{ name: 'Dr. Hanadi Khamiri', url: 'https://drhanadikhamiri.com' }],
+  creator: 'Dr. Hanadi Khamiri',
+  publisher: 'Bin Arab Dental Centre',
+  formatDetection: {
+    email: false,
+    address: true,
+    telephone: true,
+  },
+  alternates: {
+    canonical: 'https://drhanadikhamiri.com',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_AE',
+    alternateLocale: 'ar_AE',
+    url: 'https://drhanadikhamiri.com',
+    title: 'Dr. Hanadi Khamiri | Best Invisalign & Cosmetic Dentist Dubai',
+    description:
+      'Top 1% Certified Invisalign Provider & Luxury Cosmetic Dentist in Al Safa, Dubai. Crafting bespoke, natural smiles with digital iTero 3D precision and 11+ years of excellence.',
+    siteName: 'Dr. Hanadi Khamiri | Luxury Dental Clinic Dubai',
+    images: [
+      {
+        url: '/newhero_image.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Dr. Hanadi Khamiri — Best Invisalign & Cosmetic Dentist in Dubai',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dr. Hanadi Khamiri | Best Invisalign & Cosmetic Dentist Dubai',
+    description:
+      'Top 1% Certified Invisalign Provider & Luxury Cosmetic Dentist in Al Safa, Dubai. Bespoke smile makeovers, porcelain veneers, and clear aligners.',
+    images: ['/newhero_image.jpeg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({

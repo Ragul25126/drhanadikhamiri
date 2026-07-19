@@ -45,8 +45,133 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dentist',
+        '@id': 'https://drhanadikhamiri.com/#dentist',
+        name: 'Dr. Hanadi Khamiri — Best Invisalign & Cosmetic Dentist Dubai',
+        alternateName: 'Dr. Hanadi Khamiri Dental Clinic Al Safa',
+        description:
+          'Top 1% Certified Invisalign Provider & Luxury Cosmetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
+        url: 'https://drhanadikhamiri.com',
+        image: 'https://drhanadikhamiri.com/newhero_image.jpeg',
+        telephone: ['+971567847844', '+971544432808'],
+        priceRange: '$$$$',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Ferdous Building 4, Al Wasl Road',
+          addressLocality: 'Al Safa',
+          addressRegion: 'Dubai',
+          addressCountry: 'AE',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 25.1929,
+          longitude: 55.2449,
+        },
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '09:00',
+            closes: '20:00',
+          },
+        ],
+        hasMap: 'https://maps.google.com/?q=Bin+Arab+Dental+Centre+Al+Safa+Dubai',
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '5.0',
+          bestRating: '5',
+          ratingCount: '250',
+        },
+        medicalSpecialty: ['Cosmetic Dentistry', 'Orthodontics', 'General Dentistry'],
+        availableService: [
+          {
+            '@type': 'MedicalProcedure',
+            name: 'Invisalign Clear Aligners',
+            description:
+              'Top 1% Certified Invisalign Provider in Dubai offering bespoke clear aligner therapy utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
+            sameAs: 'https://en.wikipedia.org/wiki/Clear_aligners',
+          },
+          {
+            '@type': 'MedicalProcedure',
+            name: 'Porcelain Veneers & Smile Makeover',
+            description:
+              'Custom-crafted, ultra-thin ceramic veneers designed to elevate smile aesthetics with natural luster, facial harmony, and long-lasting durability.',
+            sameAs: 'https://en.wikipedia.org/wiki/Veneer_(dentistry)',
+          },
+          {
+            '@type': 'MedicalProcedure',
+            name: 'Guided Biofilm Therapy (GBT)',
+            description:
+              'Swiss EMS warm-water spa hygiene protocol that removes biofilm, stains, and plaque gently without painful scraping.',
+          },
+          {
+            '@type': 'MedicalProcedure',
+            name: 'Digital Smile Design',
+            description:
+              '3D digital facial analysis and smile simulation allowing patients to preview their aesthetic transformation before treatment begins.',
+            sameAs: 'https://en.wikipedia.org/wiki/Cosmetic_dentistry',
+          },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://drhanadikhamiri.com/#faq',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'Who is considered the best Invisalign dentist in Dubai?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Dr. Hanadi Khamiri is widely celebrated as a top Invisalign dentist in Dubai, holding Top 1% Certified Invisalign Provider distinction. Practicing at Bin Arab Dental Centre in Al Safa, she has successfully crafted over 2,000 bespoke smiles utilizing high-precision iTero Lumina 3D scanning and digital simulation technology.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Why choose Dr. Hanadi Khamiri for cosmetic dentistry and veneers in Dubai?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'With over 11 years of clinical excellence in luxury aesthetic dentistry, Dr. Hanadi Khamiri combines artistic mastery with digital precision. She designs custom, ultra-thin porcelain veneers that harmonize with individual facial features while prioritizing natural luster, tooth preservation, and total patient comfort.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Are cosmetic veneers permanent?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'While not strictly permanent, high-quality porcelain veneers typically last 10 to 15 years—and often longer—with proper care, excellent oral hygiene, and regular professional check-ups.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Does Invisalign treatment hurt?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Invisalign is engineered for maximum comfort. You may feel a slight, temporary pressure for the first day or two when switching to a new set of aligners. This is completely normal and a sign that the clear aligners are actively and gently guiding your teeth into perfect alignment.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How does the iTero Lumina 3D scanner improve Invisalign outcomes?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The iTero Lumina 3D optical scanner captures ultra-accurate digital models of your teeth in minutes, eliminating uncomfortable traditional molds. It enables instant 3D smile simulations so you can preview your straightened teeth before treatment starts and ensures every custom aligner fits with microscopic accuracy.',
+            },
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ScrollProgress />
       <Preloader />
       <CustomCursor />
