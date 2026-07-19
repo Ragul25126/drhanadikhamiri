@@ -98,7 +98,7 @@ export default async function BlogPostPage({
   });
 
   /* JSON-LD: Article + LocalBusiness */
-  const jsonLd = {
+  const jsonLd: { '@context': string; '@graph': any[] } = {
     '@context': 'https://schema.org',
     '@graph': [
       {
@@ -181,6 +181,92 @@ export default async function BlogPostPage({
       },
     ],
   };
+
+  if (post.slug === 'best-dentists-al-safa-dubai-2026-ranked-guide') {
+    jsonLd['@graph'].push({
+      '@type': 'ItemList',
+      '@id': `${canonicalUrl}#itemlist`,
+      name: 'Best Dentists in Al Safa Dubai (2026 Ranked Doctors Guide)',
+      description:
+        'Comprehensive 2026 ranking and evaluation of top dental specialists in Al Safa, Dubai based on diagnostic 3D technology, Invisalign certification tiers, and patient ratings.',
+      itemListOrder: 'https://schema.org/ItemListOrderDescending',
+      numberOfItems: 7,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Hanadi Khamiri',
+            jobTitle: 'Top 1% Certified Invisalign Provider & Cosmetic Dentist',
+            url: siteUrl,
+            image: `${siteUrl}/newhero_image.jpeg`,
+            telephone: ['+971567847844', '+971544432808'],
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '5.0',
+              bestRating: '5.0',
+              ratingCount: '200',
+            },
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Roshan Khan',
+            jobTitle: 'General Dentist Al Safa',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Abdul Nasser Hachem',
+            jobTitle: 'General Dentist Al Safa',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Anila Virani',
+            jobTitle: 'Dental Specialist Jumeirah / Al Safa',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 5,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Marwan Alobeidi',
+            jobTitle: 'Dental Specialist Jumeirah / Al Safa',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 6,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Khashayar Ilbak',
+            jobTitle: 'Dental Specialist Jumeirah / Al Safa',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 7,
+          item: {
+            '@type': 'Person',
+            name: 'Dr. Omar Said',
+            jobTitle: 'Dental Specialist Jumeirah / Al Safa',
+          },
+        },
+      ],
+    });
+  }
 
   /* Render content blocks from stored content string */
   const renderContent = (content: string) => {
