@@ -7,7 +7,7 @@ export default function InsuranceSection() {
 
   const insuranceLogos = [
     '/insurance/liva insurance.png',
-    '/insurance/dewa insurance logo.png',
+    '/insurance/dewa-logo.gif',
     '/insurance/PCFC  Customs New logo final.avif',
     '/insurance/dubai insurance logo.png',
     '/insurance/Almadallah-1.jpg',
@@ -34,15 +34,13 @@ export default function InsuranceSection() {
                   maxWidth: '100%', 
                   maxHeight: '100%', 
                   objectFit: 'contain',
-                  filter: 'grayscale(100%) opacity(0.7)',
-                  transition: 'all 0.3s ease'
+                  mixBlendMode: 'multiply',
+                  transition: 'transform 0.3s ease'
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.filter = 'grayscale(0%) opacity(1)';
-                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.transform = 'scale(1.1)';
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.filter = 'grayscale(100%) opacity(0.7)';
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
               />
@@ -66,12 +64,12 @@ export default function InsuranceSection() {
           border: 1px solid rgba(0,0,0,0.03);
         }
         .insurance-section-logo-wrap {
-          height: 80px;
+          height: 100px;
           display: flex;
           align-items: center;
           justify-content: center;
           width: 100%;
-          padding: 0.5rem;
+          padding: 1rem;
         }
         @media (max-width: 992px) {
           .insurance-section-grid {
@@ -86,7 +84,7 @@ export default function InsuranceSection() {
             padding: 2rem 1.5rem;
           }
           .insurance-section-logo-wrap {
-            height: 60px;
+            height: 80px;
           }
         }
       `}</style>

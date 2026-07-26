@@ -19,7 +19,7 @@ export default function InsuranceModal({ onBookClick }: { onBookClick: () => voi
 
   const insuranceLogos = [
     '/insurance/liva insurance.png',
-    '/insurance/dewa insurance logo.png',
+    '/insurance/dewa-logo.gif',
     '/insurance/PCFC  Customs New logo final.avif',
     '/insurance/dubai insurance logo.png',
     '/insurance/Almadallah-1.jpg',
@@ -168,8 +168,16 @@ export default function InsuranceModal({ onBookClick }: { onBookClick: () => voi
                   style={{ 
                     maxWidth: '100%', 
                     maxHeight: '100%', 
-                    objectFit: 'contain' 
+                    objectFit: 'contain',
+                    mixBlendMode: 'multiply',
+                    transition: 'transform 0.3s ease'
                   }} 
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
                 />
               </div>
             ))}
