@@ -112,13 +112,13 @@ export default function InsuranceModal({ onBookClick }: { onBookClick: () => voi
             margin-bottom: 1rem;
           }
           .insurance-grid {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.75rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem 1rem;
             padding: 0;
             margin-bottom: 1.5rem;
           }
           .insurance-logo-wrap {
-            height: 45px;
+            height: 55px;
           }
           .insurance-close-btn {
             top: 0.5rem;
@@ -130,11 +130,11 @@ export default function InsuranceModal({ onBookClick }: { onBookClick: () => voi
         }
         @media (max-width: 480px) {
           .insurance-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 1rem;
           }
           .insurance-logo-wrap {
-            height: 40px;
+            height: 55px;
           }
         }
       `}</style>
