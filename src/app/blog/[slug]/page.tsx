@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import BlogPostShell from '@/components/BlogPostShell';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 /* ── Types ── */
 type BlogPost = {
@@ -268,56 +270,7 @@ export default async function BlogPostPage({
     });
   }
 
-  /* Render content blocks from stored content string */
-  const renderContent = (content: string) => {
-    if (!content) return null;
-    // Split into paragraphs and render — content uses \n\n as paragraph separator
-    // Also detect ## headings and ### headings
-    const blocks = content.split('\n\n');
-    return blocks.map((block, i) => {
-      const trimmed = block.trim();
-      if (!trimmed) return null;
-      if (trimmed.startsWith('### ')) {
-        return (
-          <h3 key={i} style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem', fontFamily: 'var(--font-serif)', color: 'var(--charcoal)' }}>
-            {trimmed.replace(/^### /, '')}
-          </h3>
-        );
-      }
-      if (trimmed.startsWith('## ')) {
-        return (
-          <h2 key={i} style={{ fontSize: '2rem', marginTop: '3rem', marginBottom: '1rem', fontFamily: 'var(--font-serif)', color: 'var(--charcoal)' }}>
-            {trimmed.replace(/^## /, '')}
-          </h2>
-        );
-      }
-      if (trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.split('**').length === 3) {
-        return (
-          <p key={i} style={{ fontWeight: 600, marginBottom: '1rem', color: 'var(--charcoal)' }}>
-            {trimmed.replace(/\*\*/g, '')}
-          </p>
-        );
-      }
-      // Bullet list detection
-      if (trimmed.startsWith('- ')) {
-        const items = trimmed.split('\n').filter(l => l.startsWith('- '));
-        return (
-          <ul key={i} style={{ paddingLeft: '1.5rem', marginBottom: '1.5rem', color: 'var(--charcoal)' }}>
-            {items.map((item, j) => (
-              <li key={j} style={{ marginBottom: '0.5rem', lineHeight: '1.8' }}>
-                {item.replace(/^- /, '')}
-              </li>
-            ))}
-          </ul>
-        );
-      }
-      return (
-        <p key={i} style={{ marginBottom: '1.5rem', lineHeight: '1.9', color: '#444', fontSize: '1.05rem' }}>
-          {trimmed}
-        </p>
-      );
-    });
-  };
+  /* Render content blocks using react-markdown */
 
   return (
     <BlogPostShell>
@@ -448,8 +401,27 @@ export default async function BlogPostPage({
 
         {/* Article body */}
         <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1.5rem' }}>
-          <article style={{ fontFamily: 'var(--font-sans)' }}>
-            {renderContent(post.content)}
+          <article style={{ fontFamily: 'var(--font-sans)' }} className="blog-content">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({node, ...props}: any) => <h2 style={{ fontSize: '2rem', marginTop: '3rem', marginBottom: '1rem', fontFamily: 'var(--font-serif)', color: 'var(--charcoal)' }} {...props} />,
+                h3: ({node, ...props}: any) => <h3 style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem', fontFamily: 'var(--font-serif)', color: 'var(--charcoal)' }} {...props} />,
+                p: ({node, ...props}: any) => <p style={{ marginBottom: '1.5rem', lineHeight: '1.9', color: '#444', fontSize: '1.05rem' }} {...props} />,
+                ul: ({node, ...props}: any) => <ul style={{ paddingLeft: '1.5rem', marginBottom: '1.5rem', color: 'var(--charcoal)' }} {...props} />,
+                li: ({node, ...props}: any) => <li style={{ marginBottom: '0.5rem', lineHeight: '1.8' }} {...props} />,
+                strong: ({node, ...props}: any) => <strong style={{ fontWeight: 600, color: 'var(--charcoal)' }} {...props} />,
+                table: ({node, ...props}: any) => (
+                  <div style={{ overflowX: 'auto', marginBottom: '2rem' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem', marginBottom: '1rem' }} {...props} />
+                  </div>
+                ),
+                th: ({node, ...props}: any) => <th style={{ borderBottom: '2px solid #ddd', padding: '12px 16px', textAlign: 'left', backgroundColor: 'var(--ivory)', fontWeight: 600, color: 'var(--charcoal)' }} {...props} />,
+                td: ({node, ...props}: any) => <td style={{ borderBottom: '1px solid #eee', padding: '12px 16px', color: '#444' }} {...props} />,
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
           </article>
 
           {/* CTA */}
