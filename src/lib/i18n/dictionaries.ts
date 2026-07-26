@@ -118,6 +118,10 @@ export const dictionaries = {
     faqSection: {
       h2: 'Patient Inquiries',
     },
+    insuranceSection: {
+      h2: 'Insurance Accepted',
+      sub: 'We work with major insurance providers and networks. Contact our team to verify your coverage and eligibility.',
+    },
     bookingCta: {
       h2: 'Ready for Your Best Smile?',
       sub: 'Schedule your private consultation with Dr. Hanadi Khamiri today. Experience world-class dental care in the heart of Dubai.',
@@ -251,6 +255,10 @@ export const dictionaries = {
     },
     faqSection: {
       h2: 'استفسارات المرضى الشائعة',
+    },
+    insuranceSection: {
+      h2: 'شركات التأمين المعتمدة',
+      sub: 'نحن نتعاون مع كبرى شركات وشبكات التأمين. تواصل مع فريقنا للتحقق من التغطية والأهلية الخاصة بك.',
     },
     bookingCta: {
       h2: 'هل أنت جاهز لأجمل ابتسامة؟',

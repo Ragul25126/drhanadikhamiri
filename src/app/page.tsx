@@ -11,6 +11,7 @@ import FloatingWidget from '@/components/FloatingWidget';
 import FAQ from '@/components/FAQ';
 import Reviews from '@/components/Reviews';
 import InsuranceModal from '@/components/InsuranceModal';
+import InsuranceSection from '@/components/InsuranceSection';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Home() {
@@ -354,6 +355,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Insurance Showcase Section */}
+      <InsuranceSection />
 
       {/* FAQ Section */}
       <section id="faq">
