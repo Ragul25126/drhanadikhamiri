@@ -264,6 +264,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Insurance Showcase Section */}
+      <InsuranceSection />
+
       {/* Advanced Technology Section */}
       <section id="technology" style={{ padding: 'var(--section-padding) 0', backgroundColor: 'var(--pearl)' }}>
         <div className="container">
@@ -356,8 +359,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Insurance Showcase Section */}
-      <InsuranceSection />
 
       {/* FAQ Section */}
       <section id="faq">
