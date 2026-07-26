@@ -57,7 +57,7 @@ export default function Home() {
         description:
           'Top 1% Certified Invisalign Provider & Luxury Cosmetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
         url: 'https://drhanadikhamiri.com',
-        image: 'https://drhanadikhamiri.com/pic1.PNG',
+        image: 'https://drhanadikhamiri.com/pic1.webp',
         telephone: ['+971567847844', '+971544432808'],
         priceRange: '$$$$',
         address: {
@@ -169,7 +169,7 @@ export default function Home() {
 
   return (
     <>
-      <InsuranceModal />
+      <InsuranceModal onBookClick={() => setIsBookingOpen(true)} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -196,7 +196,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <img src="/pic1.PNG" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <img src="/pic1.webp" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
@@ -231,7 +231,7 @@ export default function Home() {
       <section id="about">
         <div className="container about-container">
           <div className="about-image reveal reveal-left">
-            <div className="about-img-wrap"><img src="/pic2.PNG" alt="Dr. Hanadi Clinic" onError={(e) => (e.currentTarget.style.display='none')} /></div>
+            <div className="about-img-wrap"><img src="/pic2.webp" alt="Dr. Hanadi Clinic" onError={(e) => (e.currentTarget.style.display='none')} /></div>
             <div className="about-badge">
               <div className="badge-inner"><strong>BDS</strong><span style={{ fontSize: '0.75rem', letterSpacing: '1px', whiteSpace: 'pre-line', textAlign: 'center' }}>{dict.about.bds}</span></div>
             </div>
