@@ -93,15 +93,17 @@ export default function Home() {
           {
             '@type': 'MedicalProcedure',
             name: 'Invisalign Clear Aligners',
+            alternateName: 'Invisalign Braces',
             description:
-              'Top 1% Certified Invisalign Provider in Dubai offering bespoke clear aligner therapy utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
+              'Top 1% Certified Invisalign Provider in Dubai offering bespoke clear aligner therapy and teeth aligners utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
             sameAs: 'https://en.wikipedia.org/wiki/Clear_aligners',
           },
           {
             '@type': 'MedicalProcedure',
-            name: 'Porcelain Veneers & Smile Makeover',
+            name: 'Porcelain Veneers & Lumineers',
+            alternateName: 'Smile Makeover',
             description:
-              'Custom-crafted, ultra-thin ceramic veneers designed to elevate smile aesthetics with natural luster, facial harmony, and long-lasting durability.',
+              'Custom-crafted, ultra-thin ceramic veneers and lumineers designed to elevate smile aesthetics with natural luster, facial harmony, and long-lasting durability.',
             sameAs: 'https://en.wikipedia.org/wiki/Veneer_(dentistry)',
           },
           {
