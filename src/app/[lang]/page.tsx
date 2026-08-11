@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Preloader from '@/components/Preloader';
 import CustomCursor from '@/components/CustomCursor';
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import ScrollProgress from '@/components/ScrollProgress';
 import BookingModal from '@/components/BookingModal';
@@ -16,7 +18,7 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const { dict } = useLanguage();
+  const { dict, language } = useLanguage();
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -178,9 +180,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ScrollProgress />
-      <Preloader />
-      <CustomCursor />
-      <div className="noise-overlay"></div>
       
       <FloatingWidget onBookClick={() => setIsBookingOpen(true)} />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
@@ -199,7 +198,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <img src="/pic1.webp" alt="Dr. Hanadi Khamiri" id="heroImage" onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Best Invisalign & Cosmetic Dentist in Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
@@ -234,7 +233,7 @@ export default function Home() {
       <section id="about">
         <div className="container about-container">
           <div className="about-image reveal reveal-left">
-            <div className="about-img-wrap"><img src="/pic2.webp" alt="Dr. Hanadi Clinic" onError={(e) => (e.currentTarget.style.display='none')} /></div>
+            <div className="about-img-wrap"><Image src="/pic2.webp" alt="Dr. Hanadi Khamiri Clinic - Advanced Cosmetic Dentistry Al Safa" width={800} height={1000} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display='none')} /></div>
             <div className="about-badge">
               <div className="badge-inner"><strong>BDS</strong><span style={{ fontSize: '0.75rem', letterSpacing: '1px', whiteSpace: 'pre-line', textAlign: 'center' }}>{dict.about.bds}</span></div>
             </div>
@@ -256,12 +255,12 @@ export default function Home() {
             <p style={{ marginTop: '1rem' }}>{dict.services.sub}</p>
           </div>
           <div className="services-grid">
-            <div className="service-card reveal delay-1"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/></svg></div><h3>{dict.services.c1title}</h3><p>{dict.services.c1desc}</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>{dict.services.consult}</div></div>
-            <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z"/></svg></div><h3>{dict.services.c2title}</h3><p>{dict.services.c2desc}</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>{dict.services.consult}</div></div>
-            <div className="service-card reveal delay-3"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M18 10V14H14V10H18M10 10V14H6V10H10Z"/></svg></div><h3>{dict.services.c3title}</h3><p>{dict.services.c3desc}</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>{dict.services.consult}</div></div>
-            <div className="service-card reveal delay-1"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z"/></svg></div><h3>{dict.services.c4title}</h3><p>{dict.services.c4desc}</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>{dict.services.consult}</div></div>
-            <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22Z"/></svg></div><h3>{dict.services.c5title}</h3><p>{dict.services.c5desc}</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>{dict.services.consult}</div></div>
-            <div className="service-card reveal delay-3"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M16 11C17.66 11 18.9 9.66 18.9 8C18.9 6.34 17.66 5 16 5Z"/></svg></div><h3>{dict.services.c6title}</h3><p>{dict.services.c6desc}</p><div className="service-link" onClick={() => setIsBookingOpen(true)}>{dict.services.consult}</div></div>
+            <div className="service-card reveal delay-1"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/></svg></div><h3>{dict.services.c1title}</h3><p>{dict.services.c1desc}</p><Link href={`/${language}/services/cosmetic-veneers-lumineers`} className="service-link" style={{textDecoration:'none', display:'inline-block'}}>{dict.services.consult}</Link></div>
+            <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z"/></svg></div><h3>{dict.services.c2title}</h3><p>{dict.services.c2desc}</p><Link href={`/${language}/services/invisalign-clear-aligners`} className="service-link" style={{textDecoration:'none', display:'inline-block'}}>{dict.services.consult}</Link></div>
+            <div className="service-card reveal delay-3"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M18 10V14H14V10H18M10 10V14H6V10H10Z"/></svg></div><h3>{dict.services.c3title}</h3><p>{dict.services.c3desc}</p><Link href={`/${language}/services/ceramic-crowns`} className="service-link" style={{textDecoration:'none', display:'inline-block'}}>{dict.services.consult}</Link></div>
+            <div className="service-card reveal delay-1"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z"/></svg></div><h3>{dict.services.c4title}</h3><p>{dict.services.c4desc}</p><Link href={`/${language}/services/aesthetic-fillings`} className="service-link" style={{textDecoration:'none', display:'inline-block'}}>{dict.services.consult}</Link></div>
+            <div className="service-card reveal delay-2"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22Z"/></svg></div><h3>{dict.services.c5title}</h3><p>{dict.services.c5desc}</p><Link href={`/${language}/services/guided-biofilm-therapy`} className="service-link" style={{textDecoration:'none', display:'inline-block'}}>{dict.services.consult}</Link></div>
+            <div className="service-card reveal delay-3"><div className="service-icon"><svg viewBox="0 0 24 24"><path d="M16 11C17.66 11 18.9 9.66 18.9 8C18.9 6.34 17.66 5 16 5Z"/></svg></div><h3>{dict.services.c6title}</h3><p>{dict.services.c6desc}</p><Link href={`/${language}/services/family-care`} className="service-link" style={{textDecoration:'none', display:'inline-block'}}>{dict.services.consult}</Link></div>
           </div>
         </div>
       </section>
@@ -280,7 +279,7 @@ export default function Home() {
             
             <div className="tech-card reveal delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '1/1', backgroundColor: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-                <img src="/gbt_machine.webp" alt="GBT Machine" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                <Image src="/gbt_machine.webp" alt="Guided Biofilm Therapy (GBT) EMS Machine Dubai" width={500} height={500} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>{dict.tech.t1title}</h3>
@@ -290,7 +289,7 @@ export default function Home() {
 
             <div className="tech-card reveal delay-2" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '1/1', backgroundColor: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-                <img src="/itero_scanner.webp" alt="iTero Lumina Scanner" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                <Image src="/itero_scanner.webp" alt="iTero Lumina 3D Dental Scanner Dubai for Invisalign" width={500} height={500} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>{dict.tech.t2title}</h3>
@@ -382,34 +381,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer>
-        <div className="container">
-          <div className="footer-grid">
-            <div className="footer-brand">
-              <h2>Dr. Hanadi Khamiri<span>.</span></h2>
-              <p>{dict.footer.brandSub}</p>
-            </div>
-            <div className="footer-links">
-              <h4>{dict.footer.navTitle}</h4>
-              <ul>
-                <li><a href="#about">{dict.footer.aboutLink}</a></li>
-                <li><a href="#services">{dict.footer.servicesLink}</a></li>
-                <li><a href="https://www.instagram.com/dr.hanadikhamiri" target="_blank" rel="noopener noreferrer">{dict.footer.instaLink}</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); setIsBookingOpen(true); }} style={{ color: 'var(--gold)' }}>{dict.footer.bookLink}</a></li>
-              </ul>
-            </div>
-            <div className="footer-contact">
-              <h4>{dict.footer.contactTitle}</h4>
-              <p><svg style={{ width: '20px', height: '20px', flexShrink: 0 }} viewBox="0 0 24 24"><path fill="currentColor" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg> Bin Arab dental centre<br/>Ferdous Building 4, Al wasl Rd, Al Safa - Dubai</p>
-              <p><svg style={{ width: '20px', height: '20px', flexShrink: 0 }} viewBox="0 0 24 24"><path fill="currentColor" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg> <a href="tel:+971567847844" style={{ color: 'inherit', textDecoration: 'none' }}>+971 567847844</a> / <a href="tel:+971544432808" style={{ color: 'inherit', textDecoration: 'none' }}>+971 54 443 2808</a></p>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>{dict.footer.rights}</p>
-            <p>{dict.footer.devBy}<a href="https://valgrowlabs.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', transition: 'opacity 0.3s' }}>ValGrow Labs</a></p>
-          </div>
-        </div>
-      </footer>
+      <Footer onBookClick={() => setIsBookingOpen(true)} />
     </>
   );
 }

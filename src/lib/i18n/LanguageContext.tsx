@@ -1,45 +1,51 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { dictionaries, type Language } from './dictionaries';
+import React, { createContext, useContext } from 'react';
+import { type Language, dictionaries } from './dictionaries';
+import { useRouter, usePathname } from 'next/navigation';
 
 type LanguageContextType = {
   language: Language;
-  setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
   dict: typeof dictionaries['en'];
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('clinic_lang') as Language;
-    if (saved === 'ar' || saved === 'en') {
-      setLanguageState(saved);
-      document.documentElement.setAttribute('dir', saved === 'ar' ? 'rtl' : 'ltr');
-      document.documentElement.setAttribute('lang', saved);
-    }
-  }, []);
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('clinic_lang', lang);
-    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    document.documentElement.setAttribute('lang', lang);
-  };
+export function LanguageProvider({ 
+  children, 
+  lang, 
+  dict 
+}: { 
+  children: React.ReactNode; 
+  lang: Language; 
+  dict: typeof dictionaries['en'] 
+}) {
+  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleLanguage = () => {
-    const nextLang = language === 'en' ? 'ar' : 'en';
-    setLanguage(nextLang);
+    const nextLang = lang === 'en' ? 'ar' : 'en';
+    
+    // Handle root /en or /ar
+    if (pathname === `/${lang}` || pathname === `/${lang}/`) {
+      router.push(`/${nextLang}`);
+      return;
+    }
+
+    // Handle deep paths
+    if (pathname.startsWith(`/${lang}/`)) {
+      const newPath = pathname.replace(`/${lang}/`, `/${nextLang}/`);
+      router.push(newPath);
+      return;
+    }
+
+    // Fallback
+    router.push(`/${nextLang}`);
   };
 
-  const dict = dictionaries[language];
-
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, dict }}>
+    <LanguageContext.Provider value={{ language: lang, toggleLanguage, dict }}>
       {children}
     </LanguageContext.Provider>
   );

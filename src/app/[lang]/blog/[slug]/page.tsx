@@ -39,9 +39,9 @@ async function getPost(slug: string): Promise<BlogPost | null> {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; lang: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, lang } = await params;
   const post = await getPost(slug);
 
   if (!post) {
@@ -51,7 +51,7 @@ export async function generateMetadata({
   }
 
   const siteUrl = 'https://drhanadikhamiri.com';
-  const canonicalUrl = `${siteUrl}/blog/${post.slug}`;
+  const canonicalUrl = `${siteUrl}/${lang}/blog/${post.slug}`;
 
   return {
     title: `${post.title} | Dr. Hanadi Khamiri`,
@@ -81,9 +81,9 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; lang: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, lang } = await params;
   const post = await getPost(slug);
 
   if (!post) {
@@ -91,7 +91,7 @@ export default async function BlogPostPage({
   }
 
   const siteUrl = 'https://drhanadikhamiri.com';
-  const canonicalUrl = `${siteUrl}/blog/${post.slug}`;
+  const canonicalUrl = `${siteUrl}/${lang}/blog/${post.slug}`;
   const publishDate = new Date(post.created_at).toISOString();
   const readableDate = new Date(post.created_at).toLocaleDateString('en-AE', {
     day: 'numeric',
@@ -286,7 +286,7 @@ export default async function BlogPostPage({
         <div style={{ borderBottom: '1px solid #e8e0d4', backgroundColor: 'var(--ivory)', padding: '1rem 0' }}>
           <div className="container">
             <Link
-              href="/blog"
+              href={`/${lang}/blog`}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

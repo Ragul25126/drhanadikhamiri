@@ -38,8 +38,8 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
     <>
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
           <div className="container nav-container">
-              <Link href="/" className="logo" style={{ fontWeight: 600 }} onClick={(e) => {
-                  if (pathname === '/') {
+              <Link href={`/${language}`} className="logo" style={{ fontWeight: 600 }} onClick={(e) => {
+                  if (pathname === `/${language}` || pathname === `/${language}/`) {
                       e.preventDefault();
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
@@ -48,10 +48,10 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
                 Dr. Hanadi Khamiri<span>.</span>
               </Link>
               <div className="nav-links">
-                  <Link href="/#about" className="nav-item">{dict.nav.about}</Link>
-                  <Link href="/#services" className="nav-item">{dict.nav.treatments}</Link>
-                  <Link href="/blog" className={`nav-item ${pathname === '/blog' ? 'active-link' : ''}`}>{dict.nav.blog}</Link>
-                  <Link href="/#faq" className="nav-item">{dict.nav.faq}</Link>
+                  <Link href={`/${language}/#about`} className="nav-item">{dict.nav.about}</Link>
+                  <Link href={`/${language}/#services`} className="nav-item">{dict.nav.treatments}</Link>
+                  <Link href={`/${language}/blog`} className={`nav-item ${pathname.includes('/blog') ? 'active-link' : ''}`}>{dict.nav.blog}</Link>
+                  <Link href={`/${language}/#faq`} className="nav-item">{dict.nav.faq}</Link>
                   <button
                     onClick={toggleLanguage}
                     className="lang-toggle-btn"
@@ -81,17 +81,17 @@ export default function Navbar({ onBookClick }: { onBookClick: () => void }) {
       </nav>
       <div className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
           <div className="mobile-close" onClick={closeMenu}>&times;</div>
-          <Link href="/" className="mobile-nav-link" style={{ fontWeight: 600, fontSize: '2rem', marginBottom: '1rem', color: 'var(--gold)' }} onClick={(e) => {
-              if (pathname === '/') {
+          <Link href={`/${language}`} className="mobile-nav-link" style={{ fontWeight: 600, fontSize: '2rem', marginBottom: '1rem', color: 'var(--gold)' }} onClick={(e) => {
+              if (pathname === `/${language}` || pathname === `/${language}/`) {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
               }
               closeMenu();
           }}>Dr. Hanadi Khamiri<span>.</span></Link>
-          <Link href="/#about" className="mobile-nav-link" onClick={closeMenu}>{dict.nav.about}</Link>
-          <Link href="/#services" className="mobile-nav-link" onClick={closeMenu}>{dict.nav.treatments}</Link>
-          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>{dict.nav.blog}</Link>
-          <Link href="/#faq" className="mobile-nav-link" onClick={closeMenu}>{dict.nav.faq}</Link>
+          <Link href={`/${language}/#about`} className="mobile-nav-link" onClick={closeMenu}>{dict.nav.about}</Link>
+          <Link href={`/${language}/#services`} className="mobile-nav-link" onClick={closeMenu}>{dict.nav.treatments}</Link>
+          <Link href={`/${language}/blog`} className="mobile-nav-link" onClick={closeMenu}>{dict.nav.blog}</Link>
+          <Link href={`/${language}/#faq`} className="mobile-nav-link" onClick={closeMenu}>{dict.nav.faq}</Link>
           <button
             onClick={() => { toggleLanguage(); closeMenu(); }}
             style={{
