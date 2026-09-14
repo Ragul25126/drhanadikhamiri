@@ -56,7 +56,7 @@ export default function BlogClientWrapper({ initialPosts }: { initialPosts: Blog
           
           <div className="section-header reveal" style={{ textAlign: 'left', margin: '0 0 4rem 0', maxWidth: '800px' }}>
             <h1 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', marginBottom: '1rem' }}>Journal & <span style={{ color: 'var(--gold)', fontStyle: 'italic' }}>Insights</span></h1>
-            <p style={{ fontSize: '1.2rem' }}>Expert perspectives on modern cosmetic dentistry, oral wellness, and the art of maintaining a perfect smile.</p>
+            <p style={{ fontSize: '1.2rem' }}>Expert perspectives on modern aesthetic dentistry, oral wellness, and the art of maintaining a perfect smile.</p>
           </div>
 
           {posts.length === 0 ? (

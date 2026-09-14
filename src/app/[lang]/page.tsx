@@ -55,10 +55,10 @@ export default function Home() {
       {
         '@type': 'Dentist',
         '@id': 'https://drhanadikhamiri.com/#dentist',
-        name: 'Dr. Hanadi Khamiri — Best Invisalign & Cosmetic Dentist Dubai',
+        name: 'Dr. Hanadi Khamiri — Best Clear Aligner & Aesthetic Dentist Dubai',
         alternateName: 'Dr. Hanadi Khamiri Dental Clinic Al Safa',
         description:
-          'Top 1% Certified Invisalign Provider & Luxury Cosmetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
+          'Top 1% Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
         url: 'https://drhanadikhamiri.com',
         image: 'https://drhanadikhamiri.com/pic1.webp',
         telephone: ['+971567847844', '+971544432808'],
@@ -90,14 +90,14 @@ export default function Home() {
           bestRating: '5',
           ratingCount: '250',
         },
-        medicalSpecialty: ['Cosmetic Dentistry', 'Orthodontics', 'General Dentistry'],
+        medicalSpecialty: ['Aesthetic Dentistry', 'Orthodontics', 'General Dentistry'],
         availableService: [
           {
             '@type': 'MedicalProcedure',
-            name: 'Invisalign Clear Aligners',
-            alternateName: 'Invisalign Braces',
+            name: 'Clear Aligners',
+            alternateName: 'Clear Aligner Braces',
             description:
-              'Top 1% Certified Invisalign Provider in Dubai offering bespoke clear aligner therapy and teeth aligners utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
+              'Top 1% Certified Clear Aligner Provider in Dubai offering bespoke clear aligner therapy and teeth aligners utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
             sameAs: 'https://en.wikipedia.org/wiki/Clear_aligners',
           },
           {
@@ -119,7 +119,7 @@ export default function Home() {
             name: 'Digital Smile Design',
             description:
               '3D digital facial analysis and smile simulation allowing patients to preview their aesthetic transformation before treatment begins.',
-            sameAs: 'https://en.wikipedia.org/wiki/Cosmetic_dentistry',
+            sameAs: 'https://en.wikipedia.org/wiki/Aesthetic_dentistry',
           },
         ],
       },
@@ -129,15 +129,15 @@ export default function Home() {
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'Who is considered the best Invisalign dentist in Dubai?',
+            name: 'Who is considered the best clear aligner dentist in Dubai?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Dr. Hanadi Khamiri is widely celebrated as a top Invisalign dentist in Dubai, holding Top 1% Certified Invisalign Provider distinction. Practicing at Bin Arab Dental Centre in Al Safa, she has successfully crafted over 2,000 bespoke smiles utilizing high-precision iTero Lumina 3D scanning and digital simulation technology.',
+              text: 'Dr. Hanadi Khamiri is widely celebrated as a top clear aligner dentist in Dubai, holding Top 1% Certified Clear Aligner Provider distinction. Practicing at Bin Arab Dental Centre in Al Safa, she has successfully crafted over 2,000 bespoke smiles utilizing high-precision iTero Lumina 3D scanning and digital simulation technology.',
             },
           },
           {
             '@type': 'Question',
-            name: 'Why choose Dr. Hanadi Khamiri for cosmetic dentistry and veneers in Dubai?',
+            name: 'Why choose Dr. Hanadi Khamiri for aesthetic dentistry and veneers in Dubai?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'With over 11 years of clinical excellence in luxury aesthetic dentistry, Dr. Hanadi Khamiri combines artistic mastery with digital precision. She designs custom, ultra-thin porcelain veneers that harmonize with individual facial features while prioritizing natural luster, tooth preservation, and total patient comfort.',
@@ -145,7 +145,7 @@ export default function Home() {
           },
           {
             '@type': 'Question',
-            name: 'Are cosmetic veneers permanent?',
+            name: 'Are aesthetic veneers permanent?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'While not strictly permanent, high-quality porcelain veneers typically last 10 to 15 years—and often longer—with proper care, excellent oral hygiene, and regular professional check-ups.',
@@ -153,15 +153,15 @@ export default function Home() {
           },
           {
             '@type': 'Question',
-            name: 'Does Invisalign treatment hurt?',
+            name: 'Does clear aligner treatment hurt?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Invisalign is engineered for maximum comfort. You may feel a slight, temporary pressure for the first day or two when switching to a new set of aligners. This is completely normal and a sign that the clear aligners are actively and gently guiding your teeth into perfect alignment.',
+              text: 'Clear aligner therapy is engineered for maximum comfort. You may feel a slight, temporary pressure for the first day or two when switching to a new set of aligners. This is completely normal and a sign that the clear aligners are actively and gently guiding your teeth into perfect alignment.',
             },
           },
           {
             '@type': 'Question',
-            name: 'How does the iTero Lumina 3D scanner improve Invisalign outcomes?',
+            name: 'How does the iTero Lumina 3D scanner improve clear aligner outcomes?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'The iTero Lumina 3D optical scanner captures ultra-accurate digital models of your teeth in minutes, eliminating uncomfortable traditional molds. It enables instant 3D smile simulations so you can preview your straightened teeth before treatment starts and ensures every custom aligner fits with microscopic accuracy.',
@@ -198,7 +198,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Best Invisalign & Cosmetic Dentist in Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Best Clear Aligner & Aesthetic Dentist in Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
@@ -233,7 +233,7 @@ export default function Home() {
       <section id="about">
         <div className="container about-container">
           <div className="about-image reveal reveal-left">
-            <div className="about-img-wrap"><Image src="/pic2.webp" alt="Dr. Hanadi Khamiri Clinic - Advanced Cosmetic Dentistry Al Safa" width={800} height={1000} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display='none')} /></div>
+            <div className="about-img-wrap"><Image src="/pic2.webp" alt="Dr. Hanadi Khamiri Clinic - Advanced Aesthetic Dentistry Al Safa" width={800} height={1000} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display='none')} /></div>
             <div className="about-badge">
               <div className="badge-inner"><strong>BDS</strong><span style={{ fontSize: '0.75rem', letterSpacing: '1px', whiteSpace: 'pre-line', textAlign: 'center' }}>{dict.about.bds}</span></div>
             </div>
@@ -289,7 +289,7 @@ export default function Home() {
 
             <div className="tech-card reveal delay-2" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '1/1', backgroundColor: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-                <Image src="/itero_scanner.webp" alt="iTero Lumina 3D Dental Scanner Dubai for Invisalign" width={500} height={500} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                <Image src="/itero_scanner.webp" alt="iTero Lumina 3D Dental Scanner Dubai for Clear Aligners" width={500} height={500} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>{dict.tech.t2title}</h3>

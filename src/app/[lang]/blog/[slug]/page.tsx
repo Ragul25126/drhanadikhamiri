@@ -67,7 +67,7 @@ export async function generateMetadata({
       images: post.image ? [{ url: post.image.startsWith('http') ? post.image : `${siteUrl}${post.image}` }] : [],
       publishedTime: post.created_at,
       authors: ['Dr. Hanadi Khamiri'],
-      siteName: 'Dr. Hanadi Khamiri | Luxury Cosmetic Dentist Dubai',
+      siteName: 'Dr. Hanadi Khamiri | Luxury Aesthetic Dentist Dubai',
     },
     twitter: {
       card: 'summary_large_image',
@@ -119,7 +119,7 @@ export default async function BlogPostPage({
         author: {
           '@type': 'Person',
           name: 'Dr. Hanadi Khamiri',
-          jobTitle: 'Cosmetic & General Dentist',
+          jobTitle: 'Aesthetic & General Dentist',
           url: siteUrl,
         },
         publisher: {
@@ -140,7 +140,7 @@ export default async function BlogPostPage({
         '@id': `${siteUrl}#dentist`,
         name: 'Dr. Hanadi Khamiri — Bin Arab Dental Centre',
         description:
-          'Dr. Hanadi Khamiri is a luxury cosmetic and general dentist based in Al Safa, Dubai, with over 11 years of experience in veneers, Invisalign, GBT cleaning, and smile design.',
+          'Dr. Hanadi Khamiri is a luxury aesthetic and general dentist based in Al Safa, Dubai, with over 11 years of experience in veneers, clear aligners, GBT cleaning, and smile design.',
         url: siteUrl,
         telephone: ['+971567847844', '+971544432808'],
         priceRange: '$$$$',
@@ -171,10 +171,10 @@ export default async function BlogPostPage({
           bestRating: '5',
           ratingCount: '200',
         },
-        medicalSpecialty: ['Cosmetic Dentistry', 'General Dentistry', 'Orthodontics'],
+        medicalSpecialty: ['Aesthetic Dentistry', 'General Dentistry', 'Orthodontics'],
         availableService: [
           { '@type': 'MedicalProcedure', name: 'Porcelain Veneers' },
-          { '@type': 'MedicalProcedure', name: 'Invisalign' },
+          { '@type': 'MedicalProcedure', name: 'Clear Aligners' },
           { '@type': 'MedicalProcedure', name: 'Guided Biofilm Therapy (GBT)' },
           { '@type': 'MedicalProcedure', name: 'Teeth Whitening' },
           { '@type': 'MedicalProcedure', name: 'Smile Design' },
@@ -190,7 +190,7 @@ export default async function BlogPostPage({
       '@id': `${canonicalUrl}#itemlist`,
       name: 'Best Dentists in Al Safa Dubai (2026 Ranked Doctors Guide)',
       description:
-        'Comprehensive 2026 ranking and evaluation of top dental specialists in Al Safa, Dubai based on diagnostic 3D technology, Invisalign certification tiers, and patient ratings.',
+        'Comprehensive 2026 ranking and evaluation of top dental specialists in Al Safa, Dubai based on diagnostic 3D technology, clear aligner certification tiers, and patient ratings.',
       itemListOrder: 'https://schema.org/ItemListOrderDescending',
       numberOfItems: 7,
       itemListElement: [
@@ -200,7 +200,7 @@ export default async function BlogPostPage({
           item: {
             '@type': 'Person',
             name: 'Dr. Hanadi Khamiri',
-            jobTitle: 'Top 1% Certified Invisalign Provider & Cosmetic Dentist',
+            jobTitle: 'Top 1% Certified Clear Aligner Provider & Aesthetic Dentist',
             url: siteUrl,
             image: `${siteUrl}/newhero_image.jpeg`,
             telephone: ['+971567847844', '+971544432808'],
@@ -374,7 +374,7 @@ export default async function BlogPostPage({
               </div>
               <div>
                 <div style={{ fontWeight: 600, color: 'var(--charcoal)', fontSize: '0.95rem', fontFamily: 'var(--font-sans)' }}>Dr. Hanadi Khamiri</div>
-                <div style={{ color: '#888', fontSize: '0.8rem', fontFamily: 'var(--font-sans)' }}>BDS · Cosmetic & General Dentist · Al Safa, Dubai</div>
+                <div style={{ color: '#888', fontSize: '0.8rem', fontFamily: 'var(--font-sans)' }}>BDS · Aesthetic & General Dentist · Al Safa, Dubai</div>
               </div>
             </div>
           </div>

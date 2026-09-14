@@ -118,7 +118,7 @@ export default function BookingModal({
           <div className={`booking-step ${currentStep === 0 ? 'active' : ''}`} style={{ display: currentStep === 0 ? 'block' : 'none' }}>
             <p className="step-desc">What is the primary focus of your visit?</p>
             <div className="service-selection">
-              {['Cosmetic Veneers', 'Invisalign Therapy', 'Ceramic Crowns', 'Complete Makeover', 'Routine Check-up', 'Other Consultation'].map((srv) => (
+              {['Aesthetic Veneers', 'Clear Aligner Therapy', 'Ceramic Crowns', 'Complete Makeover', 'Routine Check-up', 'Other Consultation'].map((srv) => (
                 <div
                   key={srv}
                   className={`service-box ${data.service === srv ? 'selected' : ''}`}

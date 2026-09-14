@@ -53,7 +53,7 @@ What you actually need to know is harder to quantify — but it is knowable.
 
 Every licensed dentist in Dubai holds a DHA (Dubai Health Authority) licence. But the baseline is not the ceiling. Look for postgraduate training, international certifications, or documented specialist experience in the area you need treated.
 
-For cosmetic work specifically — veneers, Invisalign, smile design — the gap between a general dentist and one who has done hundreds of cosmetic cases is enormous. Results in cosmetic dentistry are not forgiving of inexperience.
+For aesthetic work specifically — veneers, Clear Aligners, smile design — the gap between a general dentist and one who has done hundreds of aesthetic cases is enormous. Results in aesthetic dentistry are not forgiving of inexperience.
 
 ### 2. Diagnostic Technology
 
@@ -73,15 +73,15 @@ Treatment plans should be clear, documented, and free of pressure. You should le
 
 ### 5. Before and After Evidence
 
-Ask to see real patient results, not stock photos. Any cosmetic dentist with a meaningful case history should have documented before-and-after photographs. These tell you far more about consistency and aesthetic sensibility than any marketing copy.
+Ask to see real patient results, not stock photos. Any aesthetic dentist with a meaningful case history should have documented before-and-after photographs. These tell you far more about consistency and aesthetic sensibility than any marketing copy.
 
 ## About Dr. Hanadi Khamiri — Bin Arab Dental Centre, Al Safa
 
-Dr. Hanadi Khamiri practices at Bin Arab Dental Centre on Al Wasl Road in Al Safa, Dubai. She holds a Bachelor of Dental Surgery (BDS) and has over eleven years of clinical experience, with a practice focused on cosmetic dentistry, restorative work, and preventive care.
+Dr. Hanadi Khamiri practices at Bin Arab Dental Centre on Al Wasl Road in Al Safa, Dubai. She holds a Bachelor of Dental Surgery (BDS) and has over eleven years of clinical experience, with a practice focused on aesthetic dentistry, restorative work, and preventive care.
 
 Her clinic uses the iTero Lumina digital scanner for precise impressions and smile simulations, and offers GBT cleaning as a standard hygiene option. Consultations are conducted in both Arabic and English.
 
-Dr. Khamiri specialises in porcelain veneers, Invisalign orthodontics, composite bonding, professional teeth whitening, and full smile design cases. Her patient base includes Dubai residents, expatriates, and international visitors who research their options carefully before booking.
+Dr. Khamiri specialises in porcelain veneers, clear aligner orthodontics, composite bonding, professional teeth whitening, and full smile design cases. Her patient base includes Dubai residents, expatriates, and international visitors who research their options carefully before booking.
 
 ## What a Consultation at Al Safa Should Look Like
 
@@ -89,7 +89,7 @@ Whether you are visiting Dr. Khamiri or any other dentist in the area, here is w
 
 - A full clinical examination with digital X-rays or a 3D scan if relevant
 - A clear explanation of your current oral health status
-- An honest discussion of your cosmetic or restorative goals
+- An honest discussion of your aesthetic or restorative goals
 - A written treatment plan with options and associated costs
 - No pressure to commit on the day
 
@@ -101,15 +101,15 @@ If a clinic rushes through any of these steps, that is information worth having.
 
 You can use the booking form on this website or call the clinic directly at +971 567847844 or +971 54 443 2808. The clinic is located at Ferdous Building 4, Al Wasl Road, Al Safa, Dubai.
 
-### Does Dr. Khamiri offer Invisalign in Al Safa?
+### Does Dr. Khamiri offer Clear Aligners in Al Safa?
 
-Yes. Invisalign is one of Dr. Khamiri's primary treatment areas. The iTero digital scanner used at the clinic produces the precise impressions required for Invisalign aligners and allows patients to see a simulated result before treatment begins.
+Yes. Clear Aligners are one of Dr. Khamiri's primary treatment areas. The iTero digital scanner used at the clinic produces the precise impressions required for clear aligners and allows patients to see a simulated result before treatment begins.
 
 ### What is GBT cleaning and is it available at Bin Arab Dental Centre?
 
 Guided Biofilm Therapy (GBT) is an evidence-based teeth cleaning protocol developed by EMS Switzerland. It uses a combination of disclosing agents to map biofilm, and an AIRFLOW handpiece to remove it without damaging enamel. It is more comfortable and more thorough than traditional scaling. It is available at Dr. Khamiri's clinic.
 
-### Are cosmetic dental treatments in Al Safa expensive?
+### Are aesthetic dental treatments in Al Safa expensive?
 
 Costs vary significantly depending on the type of treatment, the materials used, and the experience of the practitioner. Porcelain veneers in Dubai generally range from AED 1,800 to AED 4,000 per tooth depending on the material and laboratory. A transparent, itemised cost breakdown should always be provided before any treatment begins.
 
@@ -121,7 +121,7 @@ Dr. Khamiri consults in both Arabic and English.
 
 Choosing the best dentist in Al Safa, Dubai means looking past star ratings and proximity. The clinics that consistently deliver good outcomes combine verified specialist experience, advanced diagnostic technology, transparent communication, and a patient-first approach to treatment planning.
 
-If you are in Al Safa and want a consultation focused on cosmetic dentistry or general dental care, Dr. Hanadi Khamiri at Bin Arab Dental Centre is accepting new patients. Use the booking form on this page or call the clinic directly to arrange a private consultation.`,
+If you are in Al Safa and want a consultation focused on aesthetic dentistry or general dental care, Dr. Hanadi Khamiri at Bin Arab Dental Centre is accepting new patients. Use the booking form on this page or call the clinic directly to arrange a private consultation.\`,
 };
 
 // First try: insert with slug field

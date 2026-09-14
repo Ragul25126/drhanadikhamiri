@@ -41,29 +41,29 @@ const serviceData = {
   },
   'invisalign-clear-aligners': {
     en: {
-      tagline: 'Top 1% Certified Invisalign Provider',
-      overview: 'Transform your smile discreetly with Invisalign clear aligners. Utilizing the advanced iTero Lumina 3D scanner, we create a precise digital map of your teeth and a customized treatment plan to achieve perfect alignment comfortably and effectively.',
+      tagline: 'Top 1% Certified Clear Aligner Provider',
+      overview: 'Transform your smile discreetly with clear aligners. Utilizing the advanced iTero Lumina 3D scanner, we create a precise digital map of your teeth and a customized treatment plan to achieve perfect alignment comfortably and effectively.',
       benefits: [
         { icon: 'M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z', title: 'Virtually Invisible', desc: 'Clear, medical-grade plastic aligners that go unnoticed.' },
         { icon: 'M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z', title: 'iTero 3D Mapping', desc: 'No messy impressions. Instant 3D simulation of your future smile.' },
         { icon: 'M16 11C17.66 11 18.9 9.66 18.9 8C18.9 6.34 17.66 5 16 5Z', title: 'Comfort & Removable', desc: 'Eat your favorite foods and maintain easy oral hygiene.' }
       ],
       faqs: [
-        { q: 'How long does Invisalign treatment take?', a: 'Depending on the complexity, treatment usually takes between 6 to 18 months.' },
+        { q: 'How long does clear aligner treatment take?', a: 'Depending on the complexity, treatment usually takes between 6 to 18 months.' },
         { q: 'Do I have to wear them all day?', a: 'For best results, aligners should be worn for 20-22 hours a day, removing them only to eat and brush.' },
         { q: 'Does it affect my speech?', a: 'You may have a slight lisp for the first few days as your tongue adjusts, but it quickly goes away.' }
       ]
     },
     ar: {
-      tagline: 'أفضل مزود معتمد لإنفزلاين (أفضل 1%)',
-      overview: 'حوّل ابتسامتك بسرية مع مقومات إنفزلاين الشفافة. باستخدام ماسح iTero Lumina ثلاثي الأبعاد المتقدم، نقوم بإنشاء خريطة رقمية دقيقة لأسنانك وخطة علاج مخصصة لتحقيق التوافق المثالي بشكل مريح وفعال.',
+      tagline: 'أفضل مزود معتمد للتقويم الشفاف (أفضل 1%)',
+      overview: 'حوّل ابتسامتك بسرية مع التقويم الشفاف. باستخدام ماسح iTero Lumina ثلاثي الأبعاد المتقدم، نقوم بإنشاء خريطة رقمية دقيقة لأسنانك وخطة علاج مخصصة لتحقيق التوافق المثالي بشكل مريح وفعال.',
       benefits: [
         { icon: 'M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z', title: 'غير مرئي تقريبًا', desc: 'مقومات بلاستيكية طبية شفافة تمر دون أن يلاحظها أحد.' },
         { icon: 'M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z', title: 'تخطيط iTero ثلاثي الأبعاد', desc: 'لا انطباعات فوضوية. محاكاة ثلاثية الأبعاد فورية لابتسامتك المستقبلية.' },
         { icon: 'M16 11C17.66 11 18.9 9.66 18.9 8C18.9 6.34 17.66 5 16 5Z', title: 'مريح وقابل للإزالة', desc: 'تناول الأطعمة المفضلة لديك وحافظ على نظافة الفم بسهولة.' }
       ],
       faqs: [
-        { q: 'كم يستغرق علاج إنفزلاين؟', a: 'اعتمادًا على التعقيد، يستغرق العلاج عادة ما بين 6 إلى 18 شهرًا.' },
+        { q: 'كم يستغرق علاج التقويم الشفاف؟', a: 'اعتمادًا على التعقيد، يستغرق العلاج عادة ما بين 6 إلى 18 شهرًا.' },
         { q: 'هل يجب أن أرتديها طوال اليوم؟', a: 'للحصول على أفضل النتائج، يجب ارتداء المقومات لمدة 20-22 ساعة في اليوم، وإزالتها فقط لتناول الطعام وتنظيف الأسنان.' },
         { q: 'هل يؤثر على طريقة كلامي؟', a: 'قد يكون لديك لثغة طفيفة في الأيام القليلة الأولى بينما يتكيف لسانك، لكنها سرعان ما تختفي.' }
       ]

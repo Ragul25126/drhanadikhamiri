@@ -8,7 +8,7 @@ export async function generateMetadata({
   const { lang } = await params;
   return {
     title: lang === 'ar' ? 'المدونة والمقالات | د. هنادي خميري' : 'Journal & Insights | Dr. Hanadi Khamiri - Dental Blog Dubai',
-    description: lang === 'ar' ? 'استكشف رؤى الخبراء حول طب الأسنان التجميلي الحديث، قشور الفينيير، إنفزلاين في دبي.' : 'Explore expert perspectives on modern cosmetic dentistry, porcelain veneers, Invisalign, guided biofilm therapy, and oral wellness in Dubai from Dr. Hanadi Khamiri.',
+    description: lang === 'ar' ? 'استكشف رؤى الخبراء حول طب الأسنان التجميلي الحديث، قشور الفينيير، التقويم الشفاف في دبي.' : 'Explore expert perspectives on modern aesthetic dentistry, porcelain veneers, clear aligners, guided biofilm therapy, and oral wellness in Dubai from Dr. Hanadi Khamiri.',
     alternates: {
       canonical: `https://drhanadikhamiri.com/${lang}/blog`,
     },
@@ -16,8 +16,8 @@ export async function generateMetadata({
       type: 'website',
       url: `https://drhanadikhamiri.com/${lang}/blog`,
       title: lang === 'ar' ? 'المدونة والمقالات | د. هنادي خميري' : 'Journal & Insights | Dr. Hanadi Khamiri - Dental Blog Dubai',
-      description: lang === 'ar' ? 'استكشف رؤى الخبراء حول طب الأسنان التجميلي الحديث، قشور الفينيير، إنفزلاين في دبي.' : 'Explore expert perspectives on modern cosmetic dentistry, porcelain veneers, Invisalign, guided biofilm therapy, and oral wellness in Dubai from Dr. Hanadi Khamiri.',
-      siteName: 'Dr. Hanadi Khamiri | Luxury Cosmetic Dentist Dubai',
+      description: lang === 'ar' ? 'استكشف رؤى الخبراء حول طب الأسنان التجميلي الحديث، قشور الفينيير، التقويم الشفاف في دبي.' : 'Explore expert perspectives on modern aesthetic dentistry, porcelain veneers, clear aligners, guided biofilm therapy, and oral wellness in Dubai from Dr. Hanadi Khamiri.',
+      siteName: 'Dr. Hanadi Khamiri | Luxury Aesthetic Dentist Dubai',
     },
   };
 }

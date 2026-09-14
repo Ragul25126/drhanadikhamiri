@@ -5,7 +5,7 @@ import Image from 'next/image';
 const cases = [
   {
     id: 'invisalign',
-    title: 'Invisalign Treatment',
+    title: 'Clear Aligner Treatment',
     description: 'A customized clear aligner treatment for correcting teeth alignment.',
     images: [
       '/cases/invisalign/img-4950.webp', 
@@ -15,8 +15,8 @@ const cases = [
   },
   {
     id: 'gaps-fixed',
-    title: 'Gaps Fixed by Invisalign',
-    description: 'Closing visible gaps seamlessly and restoring natural aesthetics with Invisalign.',
+    title: 'Gaps Fixed by Clear Aligners',
+    description: 'Closing visible gaps seamlessly and restoring natural aesthetics with clear aligners.',
     images: [
       '/cases/gaps-fixed/img-0050.webp', 
       '/cases/gaps-fixed/after-photo.webp', 
@@ -26,7 +26,7 @@ const cases = [
   },
   {
     id: 'aesthetic-fillings',
-    title: 'Invisalign & Aesthetic Fillings',
+    title: 'Clear Aligners & Aesthetic Fillings',
     description: 'A combined approach of precise alignment and tiny aesthetic fillings for a flawless finish.',
     images: [
       '/cases/aesthetic-fillings/img-6971.webp', 
