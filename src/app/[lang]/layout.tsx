@@ -30,18 +30,18 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
     metadataBase: new URL('https://drhanadikhamiri.com'),
     title: {
       default: isAr 
-        ? 'د. هنادي خميري | أفضل طبيب تقويم شفاف وتجميل أسنان في دبي'
-        : 'Dr. Hanadi Khamiri | Best Clear Aligner & Aesthetic Dentist in Dubai',
+        ? 'د. هنادي خميري | طبيبة تجميل أسنان وتقويم شفاف في دبي'
+        : 'Dr. Hanadi Khamiri | Aesthetic Dentist & Clear Aligners in Dubai',
       template: isAr 
         ? '%s | د. هنادي خميري — عيادة أسنان في دبي'
         : '%s | Dr. Hanadi Khamiri — Dubai Dental Clinic',
     },
     description: isAr
-      ? 'أفضل 1% معتمد للتقويم الشفاف وأفضل دكتور تجميل أسنان في دبي. تخصص في التقويم الشفاف، ابتسامة هوليود، الفينيير واللومينير في الصفا، دبي.'
-      : 'Top 1% Certified Clear Aligner Provider & Best Aesthetic Dentist in Dubai. Specializing in clear aligners, porcelain veneers, digital smile design, and Lumineers in Al Safa, Dubai.',
+      ? 'مقدم معتمد للتقويم الشفاف ودكتور تجميل أسنان في دبي. تخصص في التقويم الشفاف، ابتسامة هوليود، الفينيير واللومينير في الصفا، دبي.'
+      : 'Certified Clear Aligner Provider & Aesthetic Dentist in Dubai. Specializing in clear aligners, porcelain veneers, digital smile design, and Lumineers in Al Safa, Dubai.',
     keywords: [
-      'Best Aesthetic Dentist in Dubai',
-      'Top Clear Aligner Doctor Dubai',
+      'Aesthetic Dentist in Dubai',
+      'Clear Aligner Doctor Dubai',
       'Clear Aligners Dubai',
       'Clear Aligner Braces Dubai',
       'Porcelain Veneers Dubai',
@@ -51,10 +51,10 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       'Bin Arab Dental Centre',
       'iTero Lumina Scanner Dubai',
       'Guided Biofilm Therapy GBT Dubai',
-      'Best Lumineers in Dubai',
+      'Lumineers in Dubai',
       'Teeth Whitening Dubai',
       'Aesthetic Dentistry Dubai',
-      'أفضل دكتور تجميل أسنان في دبي',
+      'دكتور تجميل أسنان في دبي',
       'طبيب تقويم شفاف في دبي',
       'عيادة أسنان في الصفا',
       'ابتسامة هوليود دبي'
@@ -80,29 +80,29 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       alternateLocale: isAr ? 'en_AE' : 'ar_AE',
       url: `https://drhanadikhamiri.com/${params.lang}`,
       title: isAr
-        ? 'د. هنادي خميري | أفضل طبيب تقويم شفاف وتجميل أسنان في دبي'
-        : 'Dr. Hanadi Khamiri | Best Clear Aligner & Aesthetic Dentist Dubai',
+        ? 'د. هنادي خميري | طبيبة تجميل أسنان وتقويم شفاف في دبي'
+        : 'Dr. Hanadi Khamiri | Aesthetic Dentist & Clear Aligners Dubai',
       description: isAr
-        ? 'أفضل 1% معتمد للتقويم الشفاف وأفضل دكتور تجميل أسنان في دبي.'
-        : 'Top 1% Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Crafting bespoke, natural smiles with digital iTero 3D precision and 11+ years of excellence.',
+        ? 'مقدم معتمد للتقويم الشفاف ودكتور تجميل أسنان في دبي.'
+        : 'Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Crafting bespoke, natural smiles with digital iTero 3D precision and 11+ years of excellence.',
       siteName: 'Dr. Hanadi Khamiri | Luxury Dental Clinic Dubai',
       images: [
         {
           url: '/newhero_image.jpeg',
           width: 1200,
           height: 630,
-          alt: 'Dr. Hanadi Khamiri — Best Clear Aligner & Aesthetic Dentist in Dubai',
+          alt: 'Dr. Hanadi Khamiri — Aesthetic Dentist & Clear Aligners in Dubai',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title: isAr
-        ? 'د. هنادي خميري | أفضل طبيب تقويم شفاف وتجميل أسنان في دبي'
-        : 'Dr. Hanadi Khamiri | Best Clear Aligner & Aesthetic Dentist Dubai',
+        ? 'د. هنادي خميري | طبيبة تجميل أسنان وتقويم شفاف في دبي'
+        : 'Dr. Hanadi Khamiri | Aesthetic Dentist & Clear Aligners Dubai',
       description: isAr
-        ? 'أفضل 1% معتمد للتقويم الشفاف وأفضل دكتور تجميل أسنان في دبي.'
-        : 'Top 1% Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Bespoke smile makeovers, porcelain veneers, and clear aligners.',
+        ? 'مقدم معتمد للتقويم الشفاف ودكتور تجميل أسنان في دبي.'
+        : 'Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Bespoke smile makeovers, porcelain veneers, and clear aligners.',
       images: ['/newhero_image.jpeg'],
     },
     robots: {

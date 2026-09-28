@@ -55,10 +55,10 @@ export default function Home() {
       {
         '@type': 'Dentist',
         '@id': 'https://drhanadikhamiri.com/#dentist',
-        name: 'Dr. Hanadi Khamiri — Best Clear Aligner & Aesthetic Dentist Dubai',
+        name: 'Dr. Hanadi Khamiri — Aesthetic Dentist & Clear Aligners Dubai',
         alternateName: 'Dr. Hanadi Khamiri Dental Clinic Al Safa',
         description:
-          'Top 1% Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
+          'Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
         url: 'https://drhanadikhamiri.com',
         image: 'https://drhanadikhamiri.com/pic1.webp',
         telephone: ['+971567847844', '+971544432808'],
@@ -97,7 +97,7 @@ export default function Home() {
             name: 'Clear Aligners',
             alternateName: 'Clear Aligner Braces',
             description:
-              'Top 1% Certified Clear Aligner Provider in Dubai offering bespoke clear aligner therapy and teeth aligners utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
+              'Certified Clear Aligner Provider in Dubai offering bespoke clear aligner therapy and teeth aligners utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
             sameAs: 'https://en.wikipedia.org/wiki/Clear_aligners',
           },
           {
@@ -129,10 +129,10 @@ export default function Home() {
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'Who is considered the best clear aligner dentist in Dubai?',
+            name: 'What makes Dr. Hanadi Khamiri a trusted clear aligner dentist in Dubai?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Dr. Hanadi Khamiri is widely celebrated as a top clear aligner dentist in Dubai, holding Top 1% Certified Clear Aligner Provider distinction. Practicing at Bin Arab Dental Centre in Al Safa, she has successfully crafted over 2,000 bespoke smiles utilizing high-precision iTero Lumina 3D scanning and digital simulation technology.',
+              text: 'Dr. Hanadi Khamiri is a certified clear aligner provider with over 11 years of clinical experience. Practicing at Bin Arab Dental Centre in Al Safa, she has successfully crafted over 2,000 bespoke smiles utilizing high-precision iTero Lumina 3D scanning and digital simulation technology.',
             },
           },
           {
@@ -198,7 +198,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Best Clear Aligner & Aesthetic Dentist in Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Aesthetic Dentist & Clear Aligners in Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>

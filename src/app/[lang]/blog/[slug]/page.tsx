@@ -190,7 +190,7 @@ export default async function BlogPostPage({
       '@id': `${canonicalUrl}#itemlist`,
       name: 'Best Dentists in Al Safa Dubai (2026 Ranked Doctors Guide)',
       description:
-        'Comprehensive 2026 ranking and evaluation of top dental specialists in Al Safa, Dubai based on diagnostic 3D technology, clear aligner certification tiers, and patient ratings.',
+        'Comprehensive 2026 ranking and evaluation of dental specialists in Al Safa, Dubai based on diagnostic 3D technology, clear aligner certification tiers, and patient ratings.',
       itemListOrder: 'https://schema.org/ItemListOrderDescending',
       numberOfItems: 7,
       itemListElement: [
@@ -200,7 +200,7 @@ export default async function BlogPostPage({
           item: {
             '@type': 'Person',
             name: 'Dr. Hanadi Khamiri',
-            jobTitle: 'Top 1% Certified Clear Aligner Provider & Aesthetic Dentist',
+            jobTitle: 'Certified Clear Aligner Provider & Aesthetic Dentist',
             url: siteUrl,
             image: `${siteUrl}/newhero_image.jpeg`,
             telephone: ['+971567847844', '+971544432808'],

@@ -41,7 +41,7 @@ const serviceData = {
   },
   'invisalign-clear-aligners': {
     en: {
-      tagline: 'Top 1% Certified Clear Aligner Provider',
+      tagline: 'Certified Clear Aligner Provider',
       overview: 'Transform your smile discreetly with clear aligners. Utilizing the advanced iTero Lumina 3D scanner, we create a precise digital map of your teeth and a customized treatment plan to achieve perfect alignment comfortably and effectively.',
       benefits: [
         { icon: 'M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z', title: 'Virtually Invisible', desc: 'Clear, medical-grade plastic aligners that go unnoticed.' },
@@ -55,7 +55,7 @@ const serviceData = {
       ]
     },
     ar: {
-      tagline: 'أفضل مزود معتمد للتقويم الشفاف (أفضل 1%)',
+      tagline: 'مقدم معتمد للتقويم الشفاف',
       overview: 'حوّل ابتسامتك بسرية مع التقويم الشفاف. باستخدام ماسح iTero Lumina ثلاثي الأبعاد المتقدم، نقوم بإنشاء خريطة رقمية دقيقة لأسنانك وخطة علاج مخصصة لتحقيق التوافق المثالي بشكل مريح وفعال.',
       benefits: [
         { icon: 'M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z', title: 'غير مرئي تقريبًا', desc: 'مقومات بلاستيكية طبية شفافة تمر دون أن يلاحظها أحد.' },
