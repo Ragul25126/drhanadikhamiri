@@ -1,4 +1,6 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { sendTelegramBookingNotification } from '@/lib/telegram';
+import { sendWhatsAppBookingNotification } from '@/lib/whatsapp';
 
 export async function POST(request: Request) {
   try {
@@ -24,6 +26,33 @@ export async function POST(request: Request) {
     if (error) {
       console.error('Supabase insert error:', error);
       return Response.json({ error: 'Failed to save booking' }, { status: 500 });
+    }
+
+    const createdBooking = data && data[0] ? data[0] : null;
+
+    if (createdBooking) {
+      const bookingDetails = {
+        id: createdBooking.id,
+        patient_name: createdBooking.patient_name || name,
+        phone: createdBooking.phone || phone,
+        email: createdBooking.email || email,
+        service: createdBooking.service || service,
+        status: createdBooking.status || 'booked',
+      };
+
+      // Send Telegram notification safely after successful insertion
+      try {
+        await sendTelegramBookingNotification(bookingDetails);
+      } catch (notifyErr) {
+        console.error('Unexpected error triggering Telegram notification:', notifyErr instanceof Error ? notifyErr.message : notifyErr);
+      }
+
+      // Send WhatsApp Cloud API notification safely after successful insertion
+      try {
+        await sendWhatsAppBookingNotification(bookingDetails);
+      } catch (waErr) {
+        console.error('Unexpected error triggering WhatsApp notification:', waErr instanceof Error ? waErr.message : waErr);
+      }
     }
 
     return Response.json({ message: 'Booking created', booking: data[0] }, { status: 201 });
