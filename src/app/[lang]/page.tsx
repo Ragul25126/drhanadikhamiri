@@ -317,7 +317,6 @@ export default function Home() {
               height="580" 
               frameBorder="0" 
               scrolling="no" 
-              allowTransparency={true}
               style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', background: 'white' }}
             ></iframe>
 
@@ -328,7 +327,6 @@ export default function Home() {
               height="580" 
               frameBorder="0" 
               scrolling="no" 
-              allowTransparency={true}
               style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', background: 'white' }}
             ></iframe>
           </div>
