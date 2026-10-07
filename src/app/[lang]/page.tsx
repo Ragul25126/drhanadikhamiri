@@ -55,10 +55,10 @@ export default function Home() {
       {
         '@type': 'Dentist',
         '@id': 'https://drhanadikhamiri.com/#dentist',
-        name: 'Dr. Hanadi Khamiri — Aesthetic Dentist & Clear Aligners Dubai',
+        name: 'Dr. Hanadi Khamiri — Aesthetic Dentist Dubai',
         alternateName: 'Dr. Hanadi Khamiri Dental Clinic Al Safa',
         description:
-          'Certified Clear Aligner Provider & Luxury Aesthetic Dentist in Al Safa, Dubai. Over 11 years of clinical excellence specializing in clear aligners, porcelain veneers, digital smile design, and Guided Biofilm Therapy (GBT).',
+          'Luxury Aesthetic Dentist in Al Safa, Dubai with over 11 years of clinical excellence in porcelain veneers, Invisalign, digital smile design, and Guided Biofilm Therapy (GBT).',
         url: 'https://drhanadikhamiri.com',
         image: 'https://drhanadikhamiri.com/pic1.webp',
         telephone: ['+971567847844', '+971544432808'],
@@ -97,7 +97,7 @@ export default function Home() {
             name: 'Clear Aligners',
             alternateName: 'Clear Aligner Braces',
             description:
-              'Certified Clear Aligner Provider in Dubai offering bespoke clear aligner therapy and teeth aligners utilizing iTero Lumina 3D digital impressions and instant smile simulation.',
+              'Advanced iTero Lumina 3D scanning and Invisalign treatment in Dubai, allowing patients to visualize and compare their smile before and after treatment.',
             sameAs: 'https://en.wikipedia.org/wiki/Clear_aligners',
           },
           {
@@ -198,7 +198,7 @@ export default function Home() {
           </div>
           <div className="hero-image-wrapper reveal reveal-right delay-1">
             <div className="hero-img-mask">
-              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Aesthetic Dentist & Clear Aligners in Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
+              <Image src="/pic1.webp" alt="Dr. Hanadi Khamiri - Luxury Aesthetic Dentist in Al Safa, Dubai" id="heroImage" width={800} height={1000} priority style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
             </div>
             <div className="hero-accent">
               <div className="hero-accent-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
@@ -289,7 +289,7 @@ export default function Home() {
 
             <div className="tech-card reveal delay-2" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '1/1', backgroundColor: 'var(--ivory)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-                <Image src="/itero_scanner.webp" alt="iTero Lumina 3D Dental Scanner Dubai for Clear Aligners" width={500} height={500} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                <Image src="/itero_scanner.webp" alt="iTero Lumina 3D Dental Scanner Dubai for Visualizing Treatment Before and After" width={500} height={500} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
               <div>
                 <h3 style={{ marginBottom: '0.5rem', fontSize: '1.8rem', color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>{dict.tech.t2title}</h3>

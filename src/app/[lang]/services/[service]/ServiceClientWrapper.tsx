@@ -41,8 +41,8 @@ const serviceData = {
   },
   'invisalign-clear-aligners': {
     en: {
-      tagline: 'Discreet Smile Alignment & Invisalign',
-      overview: 'Transform your smile discreetly with clear aligners and Invisalign. Utilizing the advanced iTero Lumina 3D scanner, we create a precise digital model of your teeth, allowing you to visualize and compare your smile before and after treatment during your consultation.',
+      tagline: '3D Smile Visualization & Invisalign',
+      overview: 'Advanced iTero Lumina 3D scanning creates a precise digital model of your teeth, allowing you to visualize and compare your smile before and after Invisalign treatment during your consultation.',
       benefits: [
         { icon: 'M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z', title: 'Virtually Invisible', desc: 'Clear, medical-grade plastic aligners that go unnoticed.' },
         { icon: 'M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z', title: 'iTero 3D Mapping', desc: 'No messy impressions. Instant 3D simulation of your future smile.' },
@@ -55,8 +55,8 @@ const serviceData = {
       ]
     },
     ar: {
-      tagline: 'محاذاة الأسنان الشفافة وإنفزلاين',
-      overview: 'حسّن ابتسامتك بشكل طبيعي وغير ملحوظ باستخدام التقويم الشفاف وإنفزلاين. وباستخدام ماسح iTero Lumina ثلاثي الأبعاد المتطور، ننشئ نموذجاً رقمياً دقيقاً لأسنانك، مما يتيح لك معاينة ومقارنة شكل ابتسامتك قبل العلاج وبعده خلال استشارتك.',
+      tagline: 'معاينة الابتسامة ثلاثية الأبعاد وإنفزلاين',
+      overview: 'تُنشئ تقنية المسح ثلاثي الأبعاد المتقدمة iTero Lumina نموذجاً رقمياً دقيقاً لأسنانك، مما يتيح لك معاينة ومقارنة شكل ابتسامتك قبل علاج إنفزلاين وبعده خلال استشارتك.',
       benefits: [
         { icon: 'M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M15 7H9V9H15V7Z', title: 'غير مرئي تقريبًا', desc: 'مقومات بلاستيكية طبية شفافة تمر دون أن يلاحظها أحد.' },
         { icon: 'M21 11H13V3C17.42 3 21 6.58 21 11M11 21V13H3Z', title: 'تخطيط iTero ثلاثي الأبعاد', desc: 'لا انطباعات فوضوية. محاكاة ثلاثية الأبعاد فورية لابتسامتك المستقبلية.' },

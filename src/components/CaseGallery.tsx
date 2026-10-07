@@ -1,12 +1,15 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const cases = [
   {
     id: 'invisalign',
-    title: 'Clear Aligner Treatment',
-    description: 'A customized clear aligner treatment for correcting teeth alignment.',
+    title: 'Invisalign',
+    titleAr: 'إنفزلاين',
+    description: 'Discreet smile alignment designed to improve tooth positioning and create a more balanced smile.',
+    descriptionAr: 'محاذاة الأسنان بشكل غير ملحوظ لتحسين ترتيب الأسنان والحصول على ابتسامة أكثر تناسقاً.',
     images: [
       '/cases/invisalign/img-4950.webp', 
       '/cases/invisalign/img-4948.webp', 
@@ -39,6 +42,7 @@ const cases = [
 
 function CaseCard({ c, delayIdx }: { c: any, delayIdx: number }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,6 +51,9 @@ function CaseCard({ c, delayIdx }: { c: any, delayIdx: number }) {
 
     return () => clearInterval(interval);
   }, [c.images.length]);
+
+  const displayTitle = language === 'ar' && c.titleAr ? c.titleAr : c.title;
+  const displayDescription = language === 'ar' && c.descriptionAr ? c.descriptionAr : c.description;
 
   return (
     <div className={`case-card delay-${delayIdx + 1}`}>
@@ -60,7 +67,7 @@ function CaseCard({ c, delayIdx }: { c: any, delayIdx: number }) {
               <div key={i} className="carousel-slide">
                 <Image 
                   src={imgSrc} 
-                  alt={`${c.title} - Image ${i + 1}`} 
+                  alt={`${displayTitle} - Image ${i + 1}`} 
                   fill 
                   style={{ objectFit: 'cover' }} 
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -72,8 +79,8 @@ function CaseCard({ c, delayIdx }: { c: any, delayIdx: number }) {
         <div className="slide-indicator">{currentIndex + 1} / {c.images.length}</div>
       </div>
       <div className="case-info">
-        <h3>{c.title}</h3>
-        <p>{c.description}</p>
+        <h3>{displayTitle}</h3>
+        <p>{displayDescription}</p>
       </div>
 
       <style jsx>{`

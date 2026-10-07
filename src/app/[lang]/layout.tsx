@@ -31,18 +31,18 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
     title: {
       default: isAr 
         ? 'د. هنادي خميري | طبيبة تجميل أسنان وتقويم شفاف في دبي'
-        : 'Dr. Hanadi Khamiri | Aesthetic Dentist & Clear Aligners in Dubai',
+        : 'Dr. Hanadi Khamiri | Luxury Aesthetic Dentist in Dubai',
       template: isAr 
         ? '%s | د. هنادي خميري — عيادة أسنان في دبي'
         : '%s | Dr. Hanadi Khamiri — Dubai Dental Clinic',
     },
     description: isAr
-      ? 'مقدم معتمد للتقويم الشفاف ودكتور تجميل أسنان في دبي. تخصص في التقويم الشفاف، ابتسامة هوليود، الفينيير واللومينير في الصفا، دبي.'
-      : 'Certified Clear Aligner Provider & Aesthetic Dentist in Dubai. Specializing in clear aligners, porcelain veneers, digital smile design, and Lumineers in Al Safa, Dubai.',
+      ? 'طبيبة أسنان تجميلية في دبي بمركز بن عرب لطب الأسنان بالصفا. تقدم قشور الفينيير الخزفية، إنفزلاين، وتصميم الابتسامة الرقمي.'
+      : 'Aesthetic Dentist in Dubai at Bin Arab Dental Centre, Al Safa. Offering custom porcelain veneers, Invisalign, digital smile design, and Guided Biofilm Therapy (GBT).',
     keywords: [
       'Aesthetic Dentist in Dubai',
-      'Clear Aligner Doctor Dubai',
       'Clear Aligners Dubai',
+      'Invisalign Dubai',
       'Clear Aligner Braces Dubai',
       'Porcelain Veneers Dubai',
       'Smile Makeover Dubai',
@@ -55,7 +55,7 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       'Teeth Whitening Dubai',
       'Aesthetic Dentistry Dubai',
       'دكتور تجميل أسنان في دبي',
-      'طبيب تقويم شفاف في دبي',
+      'طبيبة أسنان تجميلية في دبي',
       'عيادة أسنان في الصفا',
       'ابتسامة هوليود دبي'
     ],

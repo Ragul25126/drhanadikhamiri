@@ -8,8 +8,8 @@ const servicesMap = {
     ar: { title: 'فينير ولومينير الأسنان في دبي | د. هنادي خميري', desc: 'قشور خزفية رقيقة مخصصة لرفع جمال الابتسامة ببريق طبيعي.' }
   },
   'invisalign-clear-aligners': {
-    en: { title: 'Clear Aligners in Dubai | Dr. Hanadi Khamiri', desc: 'Clear Aligners and Invisalign in Dubai with Dr. Hanadi Khamiri. Book a consultation to see if aligners are right for your smile.' },
-    ar: { title: 'التقويم الشفاف في دبي | د. هنادي خميري', desc: 'التقويم الشفاف وإنفزلاين في دبي مع د. هنادي خميري. احجز استشارة لمعرفة ما إذا كان التقويم الشفاف مناسباً لابتسامتك.' }
+    en: { title: 'Clear Aligners in Dubai | Dr. Hanadi Khamiri', desc: 'Advanced iTero 3D scanning and Invisalign treatment in Dubai with Dr. Hanadi Khamiri. Visualize and compare your smile before and after treatment.' },
+    ar: { title: 'التقويم الشفاف في دبي | د. هنادي خميري', desc: 'تقنية المسح ثلاثي الأبعاد المتقدمة iTero وعلاج إنفزلاين في دبي مع د. هنادي خميري. عاين وقارن شكل ابتسامتك قبل العلاج وبعده.' }
   },
   'ceramic-crowns': {
     en: { title: 'Ceramic Crowns in Dubai | Dr. Hanadi Khamiri', desc: 'High-strength, natural-looking ceramic crowns meticulously shade-matched to blend seamlessly.' },
